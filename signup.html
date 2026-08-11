@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up | Logistics Solutions</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+        /* ============================================================
+           ROOT & RESET — Mint + Olive Green Theme
+           ============================================================ */
+        :root {
+            --bg-color: #3B5441;        /* Olive Green */
+            --accent-color: #F9A03F;    /* Golden/Amber accent */
+            --text-color: #121212;      /* Dark text */
+            --bento-light: #E4F5DF;     /* Mint Green */
+            --bento-dark: #233325;      /* Darker Green */
+            --bento-text-light: #E4F5DF;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bento-light);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* Background Net Canvas */
+        #bg-net {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ============================================================
+           AUTH CONTAINER & CARD
+           ============================================================ */
+        .auth-container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .auth-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 32px;
+            padding: 44px 40px 40px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.06), 0 10px 30px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Auth Header (Logo + Back button) */
+        .auth-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .auth-header .logo img {
+            height: 42px;
+            filter: brightness(0) saturate(100%) invert(13%) sepia(21%) saturate(1096%) hue-rotate(85deg) brightness(97%) contrast(93%);
+        }
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--bg-color);
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .back-home:hover {
+            background: rgba(59, 84, 65, 0.04);
+            border-color: rgba(59, 84, 65, 0.06);
+        }
+        .back-home i {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+        }
+
+        .auth-title {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .auth-title h2 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--bg-color);
+            letter-spacing: -0.5px;
+            font-weight: 600;
+        }
+        .auth-title p {
+            font-size: 0.95rem;
+            color: #5a6b5f;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+           FORM ELEMENTS
+           ============================================================ */
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--bg-color);
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Input wrappers for password toggle */
+        .input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .input-wrapper input {
+            width: 100%;
+            padding: 14px 48px 14px 18px;
+            border: 1px solid rgba(59, 84, 65, 0.12);
+            border-radius: 14px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-color);
+            background: rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        .input-wrapper input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(249, 160, 63, 0.08);
+            background: #fff;
+        }
+        .input-wrapper input::placeholder {
+            color: #a0b0a5;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #a0b0a5;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            background: transparent;
+            border: none;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .toggle-password:hover {
+            color: var(--bg-color);
+        }
+
+        /* Custom Role Dropdown */
+        .custom-select {
+            position: relative;
+            width: 100%;
+            cursor: pointer;
+            user-select: none;
+        }
+        .custom-select .selected {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            border: 1px solid rgba(59, 84, 65, 0.12);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.6);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        .custom-select .selected:hover {
+            border-color: var(--accent-color);
+        }
+        .custom-select .selected .arrow {
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        .custom-select .selected .arrow.open {
+            transform: rotate(180deg);
+        }
+        .custom-select .options {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid rgba(59, 84, 65, 0.08);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: 10;
+            pointer-events: none;
+        }
+        .custom-select .options.open {
+            max-height: 200px;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .custom-select .options .option {
+            padding: 14px 18px;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(59, 84, 65, 0.04);
+        }
+        .custom-select .options .option:last-child {
+            border-bottom: none;
+        }
+        .custom-select .options .option:hover {
+            background: rgba(249, 160, 63, 0.06);
+            color: var(--accent-color);
+        }
+        .custom-select .options .option.selected-opt {
+            background: rgba(249, 160, 63, 0.08);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Buttons */
+        .form-group .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 14px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--accent-color);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .form-group .btn:hover {
+            background: #d4882e;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(249, 160, 63, 0.3);
+        }
+        .form-group .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Validation error */
+        .error-msg {
+            color: #d1453b;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 4px;
+            display: none;
+        }
+        .error-msg.show {
+            display: block;
+        }
+        .form-group.error input {
+            border-color: #d1453b;
+            box-shadow: 0 0 0 4px rgba(209, 69, 59, 0.06);
+        }
+        .form-group.error .error-msg {
+            display: block;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #5a6b5f;
+        }
+        .auth-footer a {
+            color: var(--accent-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .auth-footer a:hover {
+            color: #d4882e;
+            text-decoration: underline;
+        }
+
+        /* Password strength indicator */
+        .password-hint {
+            font-size: 0.75rem;
+            color: #7a8a7e;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 520px) {
+            body {
+                padding: 16px 12px;
+            }
+            .auth-card {
+                padding: 28px 20px 24px;
+                border-radius: 24px;
+            }
+            .auth-header .logo img {
+                height: 34px;
+            }
+            .back-home {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+                gap: 6px;
+            }
+            .back-home span {
+                display: none;
+            }
+            .back-home i {
+                font-size: 1rem;
+            }
+            .auth-title h2 {
+                font-size: 1.4rem;
+            }
+            .auth-title p {
+                font-size: 0.85rem;
+            }
+            .form-group input {
+                padding: 12px 44px 12px 14px;
+                font-size: 0.9rem;
+            }
+            .custom-select .selected {
+                padding: 12px 14px;
+                font-size: 0.9rem;
+            }
+            .form-group .btn {
+                padding: 14px;
+                font-size: 0.9rem;
+            }
+            .toggle-password {
+                right: 14px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .auth-card {
+                padding: 20px 14px 18px;
+            }
+            .auth-header .logo img {
+                height: 28px;
+            }
+            .back-home {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+            }
+            .auth-title h2 {
+                font-size: 1.2rem;
+            }
+            .form-group {
+                margin-bottom: 14px;
+            }
+            .form-group label {
+                font-size: 0.7rem;
+            }
+            .input-wrapper input {
+                padding: 10px 40px 10px 12px;
+                font-size: 0.85rem;
+            }
+            .custom-select .selected {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+            .form-group .btn {
+                padding: 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Net -->
+    <canvas id="bg-net"></canvas>
+
+    <!-- ============================================================
+    SIGN UP CARD
+    ============================================================ -->
+    <div class="auth-container" data-aos="fade-up" data-aos-duration="800">
+        <div class="auth-card">
+            <!-- Header: Logo + Back to Home -->
+            <div class="auth-header">
+                <a href="index.html" class="logo">
+                    <img src="images/logo_trimmed.webp" alt="Stackly Logistics" />
+                </a>
+                <a href="index.html" class="back-home">
+                    <i class="fa-solid fa-arrow-left"></i> <span>Back to Home</span>
+                </a>
+            </div>
+
+            <!-- Title -->
+            <div class="auth-title">
+                <h2>Create Account</h2>
+                <p>Join Stackly Logistics and start shipping smarter</p>
+            </div>
+
+            <!-- Sign Up Form -->
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <!-- Full Name -->
+                <div class="form-group" id="nameGroup">
+                    <label for="signupName">Full Name</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="signupName" placeholder="John Doe" required />
+                    </div>
+                    <div class="error-msg" id="nameError">Please enter your full name.</div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group" id="emailGroup">
+                    <label for="signupEmail">Email Address</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="signupEmail" placeholder="you@example.com" required />
+                    </div>
+                    <div class="error-msg" id="emailError">Please enter a valid email address.</div>
+                </div>
+
+                <!-- Password with Eye Toggle -->
+                <div class="form-group" id="passwordGroup">
+                    <label for="signupPassword">Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="signupPassword" placeholder="••••••••" required minlength="6" />
+                        <button type="button" class="toggle-password" onclick="togglePassword('signupPassword', this)" aria-label="Toggle password visibility">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-hint">Minimum 6 characters</div>
+                    <div class="error-msg" id="passwordError">Password must be at least 6 characters.</div>
+                </div>
+
+                <!-- Confirm Password with Eye Toggle -->
+                <div class="form-group" id="confirmGroup">
+                    <label for="signupConfirm">Confirm Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="signupConfirm" placeholder="••••••••" required />
+                        <button type="button" class="toggle-password" onclick="togglePassword('signupConfirm', this)" aria-label="Toggle password visibility">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="error-msg" id="confirmError">Passwords do not match.</div>
+                </div>
+
+                <!-- Role Dropdown (Custom) -->
+                <div class="form-group">
+                    <label>Role</label>
+                    <div class="custom-select" id="roleSelect">
+                        <div class="selected" onclick="toggleDropdown()">
+                            <span id="selectedRole">User</span>
+                            <span class="arrow" id="dropdownArrow"><i class="fa-solid fa-chevron-down"></i></span>
+                        </div>
+                        <div class="options" id="roleOptions">
+                            <div class="option selected-opt" data-value="user" onclick="selectRole('user')">User</div>
+                            <div class="option" data-value="admin" onclick="selectRole('admin')">Admin</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sign Up Button -->
+                <div class="form-group">
+                    <button type="submit" class="btn">
+                        <i class="fa-solid fa-user-plus"></i> Create Account
+                    </button>
+                </div>
+            </form>
+
+            <!-- Footer -->
+            <div class="auth-footer">
+                Already have an account? <a href="login.html">Sign in</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js">
+    </script>
+    <script>
+        // AOS
+        AOS.init({
+            once: false,
+            offset: 20,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        // ============================================================
+        // PASSWORD TOGGLE
+        // ============================================================
+        function togglePassword(inputId, button) {
+            const input = document.getElementById(inputId);
+            const icon = button.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // ============================================================
+        // ROLE DROPDOWN
+        // ============================================================
+        let selectedRole = 'user';
+
+        function toggleDropdown() {
+            const options = document.getElementById('roleOptions');
+            const arrow = document.getElementById('dropdownArrow');
+            options.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+
+        function selectRole(role) {
+            selectedRole = role;
+            document.getElementById('selectedRole').textContent = role === 'user' ? 'User' : 'Admin';
+            const options = document.getElementById('roleOptions');
+            const arrow = document.getElementById('dropdownArrow');
+            options.classList.remove('open');
+            arrow.classList.remove('open');
+
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected-opt');
+                if (opt.dataset.value === role) {
+                    opt.classList.add('selected-opt');
+                }
+            });
+        }
+
+        // Close dropdown on outside click
+        document.addEventListener('click', function(e) {
+            const select = document.getElementById('roleSelect');
+            if (!select.contains(e.target)) {
+                document.getElementById('roleOptions').classList.remove('open');
+                document.getElementById('dropdownArrow').classList.remove('open');
+            }
+        });
+
+        // ============================================================
+        // SIGNUP HANDLER
+        // ============================================================
+        function handleSignup(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value.trim();
+            const confirm = document.getElementById('signupConfirm').value.trim();
+
+            const nameGroup = document.getElementById('nameGroup');
+            const emailGroup = document.getElementById('emailGroup');
+            const passwordGroup = document.getElementById('passwordGroup');
+            const confirmGroup = document.getElementById('confirmGroup');
+
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const confirmError = document.getElementById('confirmError');
+
+            let isValid = true;
+
+            // Validate name
+            if (!name || name.length < 2) {
+                nameGroup.classList.add('error');
+                nameError.textContent = 'Please enter your full name (minimum 2 characters).';
+                isValid = false;
+            } else {
+                nameGroup.classList.remove('error');
+            }
+
+            // Validate email
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailPattern.test(email)) {
+                emailGroup.classList.add('error');
+                emailError.textContent = 'Please enter a valid email address.';
+                isValid = false;
+            } else {
+                emailGroup.classList.remove('error');
+            }
+
+            // Validate password
+            if (!password || password.length < 6) {
+                passwordGroup.classList.add('error');
+                passwordError.textContent = 'Password must be at least 6 characters.';
+                isValid = false;
+            } else {
+                passwordGroup.classList.remove('error');
+            }
+
+            // Validate confirm password
+            if (!confirm || confirm !== password) {
+                confirmGroup.classList.add('error');
+                confirmError.textContent = 'Passwords do not match.';
+                isValid = false;
+            } else {
+                confirmGroup.classList.remove('error');
+            }
+
+            if (!isValid) return;
+
+            // Store user info in localStorage
+            const userData = {
+                name: name,
+                email: email,
+                role: selectedRole,
+                loggedIn: false
+            };
+            localStorage.setItem('stackly_user', JSON.stringify(userData));
+
+            // Show success message and redirect to login
+            const btn = document.querySelector('.btn');
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Account Created!';
+            btn.style.background = '#2d8f47';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1200);
+        }
+
+        // ============================================================
+        // BACKGROUND NET CANVAS
+        // ============================================================
+        const canvas = document.getElementById('bg-net');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            const particles = [];
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 2 + 0.5,
+                    vx: (Math.random() - 0.5) * 0.2,
+                    vy: (Math.random() - 0.5) * 0.2,
+                    alpha: Math.random() * 0.4 + 0.1
+                });
+            }
+
+            function animateNet() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < -10) p.x = width + 10;
+                    if (p.x > width + 10) p.x = -10;
+                    if (p.y < -10) p.y = height + 10;
+                    if (p.y > height + 10) p.y = -10;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(59, 84, 65, ${p.alpha})`;
+                    ctx.fill();
+                });
+                requestAnimationFrame(animateNet);
+            }
+            animateNet();
+        }
+    </script>
+
+</body>
+</html>

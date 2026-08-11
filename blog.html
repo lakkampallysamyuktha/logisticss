@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Stackly Logistics</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+
+    <!-- Background Net -->
+    <canvas id="bg-net"></canvas>
+
+    <!-- ============================================================
+    HEADER — exact copy from contact.html (with active class on BLOG)
+    ============================================================ -->
+    <header id="header" class="header-section">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo_trimmed.webp" alt="Stackly Logistics Logo" class="nav-logo"></a>
+            </div>
+
+            <!-- Mobile Hamburger Toggle -->
+            <div class="hamburger-menu sticky-hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <nav class="nav-links sticky-links">
+                <div class="menu-close"><i class="fa-solid fa-xmark"></i></div>
+                <a href="index.html">HOME</a>
+                <a href="services.html">SERVICES</a>
+                <a href="about.html">ABOUT</a>
+                <a href="blog.html" class="active">BLOG</a>
+                <a href="contact.html">CONTACT</a>
+                <div class="mobile-auth-links">
+                    <a href="login.html">LOGIN</a>
+                    <a href="signup.html" class="mobile-signup-btn">SIGN UP</a>
+                </div>
+            </nav>
+            <div class="nav-actions" style="display: flex; align-items: center; gap: 20px;">
+                <a href="login.html" style="font-weight: 500; font-size: 0.95rem; color: #4A4A4A; text-transform: uppercase; letter-spacing: 1px;">Login</a>
+                <a href="signup.html" class="btn btn-nav">Signup</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    SECTION 1: BLOG HERO
+    ============================================================ -->
+    <section class="blog-hero">
+        <img src="images/hero_luxury_1786380475025.webp" alt="" class="blog-hero-bg" />
+        <div class="blog-hero-content" data-aos="fade-up">
+            <span class="badge" data-aos="fade-up" data-aos-delay="100">Insights &amp; Stories</span>
+            <h1 data-aos="fade-up" data-aos-delay="150">The <span>Logistics</span> Hub</h1>
+            <p data-aos="fade-up" data-aos-delay="200">
+                Expert insights, industry trends, and stories from the frontlines
+                of global supply chain innovation.
+            </p>
+            <form class="blog-hero-search" data-aos="fade-up" data-aos-delay="250" action="404.html" style="position: relative;" onsubmit="if(!this.querySelector('input').value.trim()){ this.querySelector('.search-error').style.display='block'; return false; } return true;">
+                <input type="text" placeholder="Search articles..." oninput="this.closest('form').querySelector('.search-error').style.display='none'" />
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <span class="search-error" style="display:none; color:var(--accent-color); position:absolute; bottom:-30px; left:20px; font-size:0.9rem; font-weight:600;">Please enter a search term</span>
+            </form>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 2: FEATURED POST
+    ============================================================ -->
+    <section class="featured-section">
+        <div class="featured-card" data-aos="fade-up" data-aos-duration="900">
+            <div class="featured-image">
+                <img src="images/air_luxury_1786380492961.webp" alt="Featured article" />
+            </div>
+            <div class="featured-body">
+                <span class="tag">Featured</span>
+                <h2>How AI is Reshaping Global Freight Logistics</h2>
+                <div class="meta">
+                    <span><i class="fa-regular fa-calendar"></i> May 15, 2026</span>
+                    <span><i class="fa-regular fa-clock"></i> 8 min read</span>
+                    <span><i class="fa-regular fa-comment"></i> 24 comments</span>
+                </div>
+                <p>
+                    From predictive routing to real‑time cargo monitoring, artificial
+                    intelligence is revolutionizing the way we move goods across borders.
+                    Discover how our AI‑driven platform is cutting transit times and
+                    reducing carbon footprints.
+                </p>
+                <a href="#" class="read-more" onclick="window.location.href='404.html'">Read Full Story <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 3: RECENT POSTS GRID
+    ============================================================ -->
+    <section class="recent-section">
+        <h2 class="section-title" data-aos="fade-up">Recent Articles</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Fresh perspectives on logistics, technology, and sustainability.
+        </p>
+        <div class="posts-grid">
+            <div class="post-card" data-aos="fade-up" data-aos-delay="100" onclick="window.location.href='404.html'">
+                <div class="thumb">
+                    <img src="images/ocean_luxury_1786380510636.webp" alt="Ocean freight" />
+                </div>
+                <div class="body">
+                    <span class="tag">Ocean Freight</span>
+                    <h3>Green Shipping: The Rise of Sustainable Maritime Transport</h3>
+                    <div class="meta">
+                        <span><i class="fa-regular fa-calendar"></i> May 10, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 6 min read</span>
+                    </div>
+                    <p>Exploring the latest innovations in eco‑friendly shipping and how the industry is reducing its environmental footprint.</p>
+                    <span class="read-more" style="cursor:pointer;">Read More <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+            <div class="post-card" data-aos="fade-up" data-aos-delay="150" onclick="window.location.href='404.html'">
+                <div class="thumb">
+                    <img src="images/warehouse_robotics_1786379276885.webp" alt="Warehouse robotics" />
+                </div>
+                <div class="body">
+                    <span class="tag">Technology</span>
+                    <h3>Robotic Warehouses: The Future of Fulfillment</h3>
+                    <div class="meta">
+                        <span><i class="fa-regular fa-calendar"></i> May 5, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 5 min read</span>
+                    </div>
+                    <p>How automation and robotics are transforming warehouses into highly efficient, error‑free fulfillment centers.</p>
+                    <span class="read-more" style="cursor:pointer;">Read More <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+            <div class="post-card" data-aos="fade-up" data-aos-delay="200" onclick="window.location.href='404.html'">
+                <div class="thumb">
+                    <img src="images/modern_truck_1786379290480.webp" alt="Last mile delivery" />
+                </div>
+                <div class="body">
+                    <span class="tag">Last Mile</span>
+                    <h3>Last‑Mile Innovation: Faster, Smarter Delivery</h3>
+                    <div class="meta">
+                        <span><i class="fa-regular fa-calendar"></i> Apr 28, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 7 min read</span>
+                    </div>
+                    <p>From drone deliveries to electric fleets, the last mile is evolving. Here's what's next for urban logistics.</p>
+                    <span class="read-more" style="cursor:pointer;">Read More <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 4: CATEGORIES
+    ============================================================ -->
+    <section class="categories-section">
+        <h2 class="section-title" data-aos="fade-up">Explore Topics</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Browse articles by category and find what matters to you.
+        </p>
+        <div class="categories-cloud" data-aos="fade-up" data-aos-delay="150">
+            <span class="category-pill" onclick="window.location.href='404.html'">Air Freight <span class="count">18</span></span>
+            <span class="category-pill" onclick="window.location.href='404.html'">Ocean Freight <span class="count">24</span></span>
+            <span class="category-pill" onclick="window.location.href='404.html'">Road Logistics <span class="count">15</span></span>
+            <span class="category-pill" onclick="window.location.href='404.html'">Warehousing <span class="count">12</span></span>
+            <span class="category-pill" onclick="window.location.href='404.html'">Technology <span class="count">29</span></span>
+            <span class="category-pill" onclick="window.location.href='404.html'">Sustainability <span class="count">21</span></span>
+            <span class="category-pill" onclick="window.location.href='404.html'">Supply Chain <span class="count">33</span></span>
+            <span class="category-pill" onclick="window.location.href='404.html'">Industry Trends <span class="count">19</span></span>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 5: TRENDING POSTS
+    ============================================================ -->
+    <section class="trending-section">
+        <h2 class="section-title" data-aos="fade-up">Trending Now</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Most popular articles this month.
+        </p>
+        <div class="trending-grid">
+            <div class="trending-item" data-aos="fade-up" data-aos-delay="100" onclick="window.location.href='404.html'">
+                <span class="rank">01</span>
+                <div class="info">
+                    <h4>Supply Chain Resilience in a Volatile World</h4>
+                    <div class="meta"><i class="fa-regular fa-eye"></i> 1.2k views</div>
+                </div>
+            </div>
+            <div class="trending-item" data-aos="fade-up" data-aos-delay="150" onclick="window.location.href='404.html'">
+                <span class="rank">02</span>
+                <div class="info">
+                    <h4>How IoT Sensors Are Revolutionizing Cargo Tracking</h4>
+                    <div class="meta"><i class="fa-regular fa-eye"></i> 980 views</div>
+                </div>
+            </div>
+            <div class="trending-item" data-aos="fade-up" data-aos-delay="200" onclick="window.location.href='404.html'">
+                <span class="rank">03</span>
+                <div class="info">
+                    <h4>Carbon‑Neutral Logistics: A Practical Guide</h4>
+                    <div class="meta"><i class="fa-regular fa-eye"></i> 840 views</div>
+                </div>
+            </div>
+            <div class="trending-item" data-aos="fade-up" data-aos-delay="250" onclick="window.location.href='404.html'">
+                <span class="rank">04</span>
+                <div class="info">
+                    <h4>The Rise of Autonomous Freight Vehicles</h4>
+                    <div class="meta"><i class="fa-regular fa-eye"></i> 720 views</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 6: NEWSLETTER
+    ============================================================ -->
+    <section class="newsletter-section">
+        <img src="images/hero_logistics_1786379231105.webp" alt="" class="nl-bg" />
+        <div class="newsletter-content" data-aos="fade-up">
+            <h2>Stay Ahead of the Curve</h2>
+            <p>
+                Subscribe to our newsletter and get the latest logistics insights,
+                industry news, and exclusive content delivered to your inbox.
+            </p>
+            <form class="newsletter-form" action="404.html">
+                <input type="email" placeholder="Enter your email address" autocomplete="off" required />
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+            <script>
+                window.addEventListener('pageshow', function(event) {
+                    if (event.persisted) {
+                        document.querySelectorAll('.newsletter-form').forEach(f => f.reset());
+                    }
+                });
+            </script>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 7: AUTHOR SPOTLIGHT
+    ============================================================ -->
+    <section class="author-section">
+        <div class="author-card" data-aos="fade-up" data-aos-duration="800">
+            <img src="images/sarah_chen.webp" alt="Sarah Chen" class="author-avatar" onerror="this.style.background='var(--bento-dark)'; this.alt='Sarah Chen'" />
+            <div class="author-info">
+                <h3>Sarah Chen</h3>
+                <span class="role">Senior Editor &amp; Logistics Strategist</span>
+                <p>
+                    Sarah brings 15 years of experience in global supply chain management
+                    to the blog. She's passionate about sustainable logistics and the
+                    intersection of technology and freight. Her writing has been featured
+                    in leading industry publications.
+                </p>
+                <div class="social-links">
+                    <a href="#" onclick="window.location.href='404.html'; return false;"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" onclick="window.location.href='404.html'; return false;"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" onclick="window.location.href='404.html'; return false;"><i class="fa-brands fa-medium"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 8: VIDEO / MEDIA
+    ============================================================ -->
+    <section class="media-section">
+        <h2 class="section-title" data-aos="fade-up">Watch &amp; Learn</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Visual stories and deep dives into the world of logistics.
+        </p>
+        <div class="media-grid">
+            <div class="media-card" data-aos="flip-up" data-aos-delay="100" onclick="window.location.href='404.html'">
+                <img src="images/air_luxury_1786380492961.webp" alt="" class="thumb" />
+                <div class="label">
+                    <i class="fa-solid fa-circle-play play-icon"></i>
+                    <span>Inside Our Air Freight Hub</span>
+                </div>
+            </div>
+            <div class="media-card" data-aos="flip-up" data-aos-delay="150" onclick="window.location.href='404.html'">
+                <img src="images/ocean_luxury_1786380510636.webp" alt="" class="thumb" />
+                <div class="label">
+                    <i class="fa-solid fa-circle-play play-icon"></i>
+                    <span>Sustainable Shipping in Action</span>
+                </div>
+            </div>
+            <div class="media-card" data-aos="flip-up" data-aos-delay="200" onclick="window.location.href='404.html'">
+                <img src="images/warehouse_robotics_1786379276885.webp" alt="" class="thumb" />
+                <div class="label">
+                    <i class="fa-solid fa-circle-play play-icon"></i>
+                    <span>Robotic Warehouse Tour</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 9: PULL QUOTE
+    ============================================================ -->
+    <section class="quote-section">
+        <div class="quote-block" data-aos="zoom-in" data-aos-duration="800">
+            <span class="quote-icon"><i class="fa-solid fa-quote-left"></i></span>
+            <blockquote>
+                "Logistics is not just about moving things. It's about moving ideas,
+                moving possibilities, and moving the world forward."
+            </blockquote>
+            <div class="attribution">— <span>James Okafor</span>, VP of Global Sales</div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 10: PAGINATION
+    ============================================================ -->
+    <section class="pagination-section">
+        <div class="pagination" data-aos="fade-up">
+            <button class="page-btn arrow disabled"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn" onclick="window.location.href='404.html'">2</button>
+            <button class="page-btn" onclick="window.location.href='404.html'">3</button>
+            <button class="page-btn" onclick="window.location.href='404.html'">4</button>
+            <button class="page-btn" onclick="window.location.href='404.html'">…</button>
+            <button class="page-btn" onclick="window.location.href='404.html'">12</button>
+            <button class="page-btn arrow" onclick="window.location.href='404.html'"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER — exact copy from contact.html
+    ============================================================ -->
+    <footer class="footer-section">
+        <img src="images/hero_logistics_1786379231105.webp" alt="" class="footer-bg" />
+        <div class="footer-overlay"></div>
+        <div class="footer-content-wrapper">
+            <div class="footer-content" data-aos="fade-up">
+                <h2>Stackly Logistics</h2>
+                <p>Intelligent routing, style follows every shipment.</p>
+                <a href="contact.html" class="btn btn-solid">Get a Quote</a>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="about.html">About</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-meta">
+                    <p>&copy; 2026 Stackly Logistics. All rights reserved.</p>
+                    <div class="socials">
+                        <a href="#" onclick="window.location.href='404.html'; return false;"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" onclick="window.location.href='404.html'; return false;"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" onclick="window.location.href='404.html'; return false;"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" onclick="window.location.href='404.html'; return false;"><i class="fa-brands fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js">
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+    </script>
+    <script>
+        // ============================================================
+        // AOS INIT
+        // ============================================================
+        AOS.init({
+            once: false,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        // ============================================================
+        // HAMBURGER MENU (exact copy from contact.html)
+        // ============================================================
+        const hamburger = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const menuClose = document.querySelector('.menu-close');
+        const body = document.body;
+
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                const isOpen = navLinks.classList.toggle('open');
+                body.classList.toggle('menu-open');
+                const icon = hamburger.querySelector('i');
+                if (isOpen) {
+                    icon.className = 'fa-solid fa-xmark';
+                } else {
+                    icon.className = 'fa-solid fa-bars';
+                }
+            });
+
+            if (menuClose) {
+                menuClose.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                    body.classList.remove('menu-open');
+                    const icon = hamburger.querySelector('i');
+                    icon.className = 'fa-solid fa-bars';
+                });
+            }
+
+            navLinks.querySelectorAll('a:not(.mobile-auth-links a)').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                    body.classList.remove('menu-open');
+                    const icon = hamburger.querySelector('i');
+                    icon.className = 'fa-solid fa-bars';
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                    navLinks.classList.remove('open');
+                    body.classList.remove('menu-open');
+                    const icon = hamburger.querySelector('i');
+                    icon.className = 'fa-solid fa-bars';
+                }
+            });
+
+            navLinks.addEventListener('click', (e) => {
+                if (e.target === navLinks) {
+                    navLinks.classList.remove('open');
+                    body.classList.remove('menu-open');
+                    const icon = hamburger.querySelector('i');
+                    icon.className = 'fa-solid fa-bars';
+                }
+            });
+        }
+
+        // ============================================================
+        // STICKY HEADER (Scrolled shadow)
+        // ============================================================
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ============================================================
+        // PAGINATION BUTTON INTERACTION
+        // ============================================================
+        const pageBtns = document.querySelectorAll('.page-btn:not(.arrow)');
+        pageBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Only handle active state for non-404 buttons (the first one is active, others redirect)
+                if (!this.onclick) {
+                    pageBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    document.querySelector('.pagination-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ============================================================
+        // BACKGROUND NET CANVAS
+        // ============================================================
+        const canvas = document.getElementById('bg-net');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            const particles = [];
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 2 + 0.5,
+                    vx: (Math.random() - 0.5) * 0.2,
+                    vy: (Math.random() - 0.5) * 0.2,
+                    alpha: Math.random() * 0.4 + 0.1
+                });
+            }
+
+            function animateNet() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < -10) p.x = width + 10;
+                    if (p.x > width + 10) p.x = -10;
+                    if (p.y < -10) p.y = height + 10;
+                    if (p.y > height + 10) p.y = -10;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(59, 84, 65, ${p.alpha})`;
+                    ctx.fill();
+                });
+                requestAnimationFrame(animateNet);
+            }
+            animateNet();
+        }
+
+        console.log('🚀 Blog page ready.');
+    </script>
+</body>
+</html>

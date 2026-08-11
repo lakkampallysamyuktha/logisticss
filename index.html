@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistics Solutions | Modern Luxury</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Background Canvas Animation -->
+    <canvas id="bg-net"></canvas>
+
+    <!-- Sticky Glassmorphic Header -->
+    <header id="sticky-header" class="header-section glass-sticky-header">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo_trimmed.webp" alt="Stackly Logistics Logo" class="nav-logo"></a>
+            </div>
+            
+            <!-- Mobile Hamburger Toggle -->
+            <div class="hamburger-menu sticky-hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <nav class="nav-links sticky-links">
+                <div class="menu-close"><i class="fa-solid fa-xmark"></i></div>
+                <a href="index.html" class="active">HOME</a>
+                <a href="services.html">SERVICES</a>
+                <a href="about.html">ABOUT</a>
+                <a href="blog.html">BLOG</a>
+                <a href="contact.html">CONTACT</a>
+                <div class="mobile-auth-links">
+                    <a href="login.html">LOGIN</a>
+                    <a href="signup.html" class="mobile-signup-btn">SIGN UP</a>
+                </div>
+            </nav>
+            <div class="nav-actions" style="display: flex; align-items: center; gap: 20px;">
+                <a href="login.html" style="font-weight: 500; font-size: 0.95rem; color: #4A4A4A; text-transform: uppercase; letter-spacing: 1px;">Login</a>
+                <a href="signup.html" class="btn btn-nav">Signup</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    MOBILE HERO (shown only on small screens)
+    ============================================================ -->
+    <section id="mobile-hero">
+        <img src="images/hero_luxury_1786380475025.webp" alt="" class="mobile-hero-bg" />
+        <div class="mobile-hero-content">
+            <h1 class="mobile-title" data-aos="fade-up">Intelligent routing, style<br />follows every shipment.</h1>
+            <p class="mobile-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Whether it's a quick LTL load or a full global supply chain transformation,
+                we bring unparalleled efficiency to your business.
+            </p>
+
+            <form class="mobile-search" data-aos="fade-up" data-aos-delay="200" action="404.html" style="position: relative;" onsubmit="if(!this.querySelector('input').value.trim()){ this.querySelector('.search-error').style.display='block'; return false; } return true;">
+                <input type="text" placeholder="Search services..." oninput="this.closest('form').querySelector('.search-error').style.display='none'" />
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <span class="search-error" style="display:none; color:var(--accent-color); position:absolute; bottom:-25px; left:20px; font-size:0.85rem; font-weight:600;">Please enter a search term</span>
+            </form>
+
+            <div class="mobile-stats" data-aos="fade-up" data-aos-delay="150">
+                <div class="stat">
+                    <span class="num">99.9%</span>
+                    <span class="label">On-time Delivery</span>
+                </div>
+                <div class="stat">
+                    <span class="num">120+</span>
+                    <span class="label">Countries Served</span>
+                </div>
+                <div class="stat">
+                    <span class="num">24/7</span>
+                    <span class="label">Active Support</span>
+                </div>
+            </div>
+
+            <div class="mobile-service-chips" data-aos="fade-up" data-aos-delay="250">
+                <span class="chip" onclick="window.location.href='services.html'"><i class="fa-solid fa-plane-departure"></i> Air Freight</span>
+                <span class="chip" onclick="window.location.href='services.html'"><i class="fa-solid fa-ship"></i> Ocean Freight</span>
+                <span class="chip" onclick="window.location.href='services.html'"><i class="fa-solid fa-truck"></i> Road Freight</span>
+                <span class="chip" onclick="window.location.href='services.html'"><i class="fa-solid fa-warehouse"></i> Warehousing</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: Hero & Header -->
+    <div class="bento-wrapper">
+        <div class="bento-mint-layer">
+            
+            <!-- Cutout: Top Right (Nav & Sign In) -->
+            <div class="top-right-dark">
+                <div class="bento-header-right">
+                    <div class="bento-header-actions">
+                        <a href="login.html" class="bento-signin" data-aos="fade-right">Sign in <span class="signin-icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></span></a>
+                        <div class="hamburger-menu bento-hamburger">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                    </div>
+                    <nav class="bento-nav">
+                        <a href="index.html" data-aos="fade-down" data-aos-delay="100">Home</a>
+                        <a href="services.html" data-aos="fade-down" data-aos-delay="200">Services</a>
+                        <a href="about.html" data-aos="fade-down" data-aos-delay="300">About</a>
+                        <a href="blog.html" data-aos="fade-down" data-aos-delay="400">Blog</a>
+                        <a href="contact.html" data-aos="fade-down" data-aos-delay="500">Contact</a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Cutout: Bottom (Full width, shorter on right) -->
+            <div class="bottom-dark">
+                <div class="bento-bottom-right">
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="100" onclick="window.location.href='services.html'">
+                        <i class="fa-solid fa-plane-departure"></i>
+                        <span>Air Freight</span>
+                    </div>
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="200" onclick="window.location.href='services.html'">
+                        <i class="fa-solid fa-ship"></i>
+                        <span>Ocean Freight</span>
+                    </div>
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="300" onclick="window.location.href='services.html'">
+                        <i class="fa-solid fa-truck"></i>
+                        <span>Road Freight</span>
+                    </div>
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="400" onclick="window.location.href='services.html'">
+                        <i class="fa-solid fa-warehouse"></i>
+                        <span>Warehousing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cutout: Bottom Left (Taller part for "Global Reach") -->
+            <div class="bottom-left-tall">
+                <div class="bento-bottom-left">
+                    <h2 data-aos="fade-right">Global Reach<br>and Efficiency</h2>
+                    <div class="bottom-actions" data-aos="fade-up" data-aos-delay="100">
+                        <a href="services.html" class="bento-book-btn">Discover Now <span class="book-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></span></a>
+                        <div class="social-icons">
+                            <a href="#" onclick="window.location.href='404.html'; return false;"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" onclick="window.location.href='404.html'; return false;"><i class="fa-brands fa-facebook-f"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content on Mint Layer -->
+            <div class="bento-header-left" data-aos="fade-down">
+                <a href="index.html" class="bento-logo">
+                    <img src="images/logo_trimmed.webp" alt="Logo">
+                </a>
+            </div>
+            
+            <div class="bento-hero-content">
+                <h1 class="bento-title" data-aos="fade-up">Intelligent routing, style<br>follows every shipment.</h1>
+                <p class="bento-subtitle" data-aos="fade-up" data-aos-delay="100">Whether it's a quick LTL load or a full global supply chain transformation, we're here to bring unparalleled efficiency to your business.</p>
+                
+                <form class="bento-search-bar" data-aos="fade-up" data-aos-delay="200" action="404.html" style="position: relative;" onsubmit="if(!this.querySelector('input').value.trim()){ this.querySelector('.search-error').style.display='block'; return false; } return true;">
+                    <button type="button" class="bento-btn-track active" onclick="window.location.href='404.html'">Track</button>
+                    <button type="button" class="bento-btn-quote" onclick="window.location.href='services.html'">Quote</button>
+                    <input type="text" placeholder="Search services..." oninput="this.closest('form').querySelector('.search-error').style.display='none'">
+                    <button type="submit" class="bento-btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <span class="search-error" style="display:none; color:var(--accent-color); position:absolute; bottom:-30px; left:50%; transform:translateX(-50%); font-size:0.85rem; font-weight:600; white-space:nowrap;">Please enter a search term</span>
+                </form>
+            </div>
+
+            <!-- Vertical Stats to fill middle empty space -->
+            <div class="bento-hero-stats" data-aos="fade-left" data-aos-delay="300">
+                <div class="stat-item">
+                    <span class="stat-num">99.9%</span>
+                    <span class="stat-label">On-time Delivery</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">120+</span>
+                    <span class="stat-label">Countries Served</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">24/7</span>
+                    <span class="stat-label">Active Support</span>
+                </div>
+            </div>
+            
+            <!-- Trustpilot badge moved to bottom middle empty space -->
+            <div class="bento-trust-badge" data-aos="zoom-in" data-aos-delay="400" onclick="window.location.href='404.html'">
+                <div class="star-circle"><i class="fa-solid fa-star"></i></div>
+                <div class="trust-text">On <strong>Trusted Pilot</strong><br>150+ Reviews</div>
+            </div>
+            
+            <div class="bento-image-wrapper" data-aos="fade-left" data-aos-delay="200" onclick="window.location.href='404.html'">
+                <img src="images/hero_luxury_1786380475025.webp" alt="Logistics Flow">
+                <div class="bento-glass-card" data-aos="fade-up" data-aos-delay="500">
+                    <h3>Recommended</h3>
+                    <div class="glass-content">
+                        <h4>Global Supply Chain <span class="rating"><i class="fa-solid fa-star"></i> (2.3k+)</span></h4>
+                        <p>Premium Logistics Routing<br>New York & London Hub (1km away)</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Section 2: Infinite Marquee -->
+    <section id="marquee" class="marquee-section">
+        <div class="marquee-content">
+            <div class="marquee-track">
+                <span>Global Reach</span><i class="fa-solid fa-globe"></i>
+                <span>Fast Delivery</span><i class="fa-solid fa-bolt"></i>
+                <span>Secure Freight</span><i class="fa-solid fa-shield-halved"></i>
+                <span>24/7 Tracking</span><i class="fa-solid fa-location-crosshairs"></i>
+                <span>Global Reach</span><i class="fa-solid fa-globe"></i>
+                <span>Fast Delivery</span><i class="fa-solid fa-bolt"></i>
+                <span>Secure Freight</span><i class="fa-solid fa-shield-halved"></i>
+                <span>24/7 Tracking</span><i class="fa-solid fa-location-crosshairs"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Our Services (Image Bento Grid) -->
+    <section id="services" class="services-section container">
+        <h2 data-aos="fade-up">Our Premium Services</h2>
+        <div class="bento-grid">
+            <div class="bento-item bento-large has-image" data-aos="zoom-in" data-aos-delay="100" onclick="window.location.href='services.html'">
+                <img src="images/air_luxury_1786380492961.webp" alt="Air Freight" class="bento-bg">
+                <div class="bento-overlay"></div>
+                <div class="bento-content text-light">
+                    <i class="fa-solid fa-plane-departure"></i>
+                    <h3>Air Freight</h3>
+                    <p>Expedited shipping worldwide with our modern fleet.</p>
+                </div>
+            </div>
+            
+            <div class="bento-item bento-tall has-image" data-aos="zoom-in" data-aos-delay="200" onclick="window.location.href='services.html'">
+                <img src="images/ocean_luxury_1786380510636.webp" alt="Ocean Freight" class="bento-bg">
+                <div class="bento-overlay"></div>
+                <div class="bento-content text-light">
+                    <i class="fa-solid fa-ship"></i>
+                    <h3>Ocean Freight</h3>
+                    <p>Cost-effective global maritime transport.</p>
+                </div>
+            </div>
+            
+            <div class="bento-item bento-small text-only" data-aos="zoom-in" data-aos-delay="300" onclick="window.location.href='services.html'">
+                <div class="bento-content text-light">
+                    <i class="fa-solid fa-truck"></i>
+                    <h3>Road Logistics</h3>
+                    <p>Seamless last-mile delivery. Our network of verified drivers ensures efficient cross-border transport.</p>
+                </div>
+            </div>
+
+            <div class="bento-item bento-small text-only" data-aos="zoom-in" data-aos-delay="400" onclick="window.location.href='services.html'">
+                <div class="bento-content text-light">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <h3>Supply Chain</h3>
+                    <p>End-to-end management. From raw materials to finished products, we optimize every node.</p>
+                </div>
+            </div>
+
+            <div class="bento-item bento-wide text-only" data-aos="zoom-in" data-aos-delay="500" onclick="window.location.href='services.html'">
+                <div class="bento-content text-light">
+                    <i class="fa-solid fa-robot"></i>
+                    <h3>Smart Warehousing</h3>
+                    <p>AI-driven robotic fulfillment centers. Our advanced algorithms predict demand and manage inventory with 99.9% accuracy.</p>
+                    <ul class="bento-list">
+                        <li><i class="fa-solid fa-check"></i> Automated Picking</li>
+                        <li><i class="fa-solid fa-check"></i> Climate Controlled</li>
+                        <li><i class="fa-solid fa-check"></i> 24/7 Security</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bento-item bento-wide has-image" data-aos="zoom-in" data-aos-delay="600" onclick="window.location.href='services.html'">
+                <img src="images/hero_luxury_1786380475025.webp" alt="Customs Brokerage" class="bento-bg warm-filter">
+                <div class="bento-overlay"></div>
+                <div class="bento-content text-light">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <h3>Customs Brokerage</h3>
+                    <p>Frictionless border crossing and compliance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: How It Works (Timeline) -->
+    <section id="timeline" class="timeline-section container">
+        <h2 data-aos="fade-up">How It Works</h2>
+        <div class="timeline-container">
+            <div class="timeline-item" data-aos="slide-right" data-aos-duration="1000" onclick="window.location.href='404.html'">
+                <div class="timeline-icon"><i class="fa-solid fa-file-contract"></i></div>
+                <div class="timeline-content has-image">
+                    <img src="images/air_light_1786380074782.webp" class="tl-bg" alt="Order Placement">
+                    <div class="tl-overlay"></div>
+                    <div class="tl-text">
+                        <h3>1. Order Placement</h3>
+                        <p>Seamlessly integrate your orders with our robust API.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="slide-left" data-aos-duration="1000" onclick="window.location.href='404.html'">
+                <div class="timeline-icon"><i class="fa-solid fa-box-open"></i></div>
+                <div class="timeline-content has-image">
+                    <img src="images/ocean_light_1786380089169.webp" class="tl-bg" alt="Packaging">
+                    <div class="tl-overlay"></div>
+                    <div class="tl-text">
+                        <h3>2. Packaging & Prep</h3>
+                        <p>We ensure your goods are securely packed for transit.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="slide-right" data-aos-duration="1000" onclick="window.location.href='404.html'">
+                <div class="timeline-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                <div class="timeline-content has-image">
+                    <img src="images/truck_light_1786380118938.webp" class="tl-bg" alt="Dispatch">
+                    <div class="tl-overlay"></div>
+                    <div class="tl-text">
+                        <h3>3. Dispatch</h3>
+                        <p>Real-time routing optimization for the fastest transit times.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="slide-left" data-aos-duration="1000" onclick="window.location.href='404.html'">
+                <div class="timeline-icon"><i class="fa-solid fa-house-circle-check"></i></div>
+                <div class="timeline-content has-image">
+                    <img src="images/warehouse_light_1786380104045.webp" class="tl-bg" alt="Delivery">
+                    <div class="tl-overlay"></div>
+                    <div class="tl-text">
+                        <h3>4. Delivery</h3>
+                        <p>Safe, on-time arrival directly to the final destination.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Global Network (Horizontal Scroll) -->
+    <section id="network" class="network-section">
+        <div class="horizontal-scroll-container">
+            <div class="hs-panel has-image" data-aos="fade-up" data-aos-delay="100" onclick="window.location.href='404.html'">
+                <img src="images/air_freight_1786379243765.webp" class="hs-bg" alt="North America">
+                <div class="hs-overlay"></div>
+                <h2>North<br class="mobile-br">America</h2>
+                <div class="hs-map-icon"><i class="fa-solid fa-earth-americas"></i></div>
+            </div>
+            <div class="hs-panel has-image" data-aos="fade-up" data-aos-delay="200" onclick="window.location.href='404.html'">
+                <img src="images/ocean_freight_1786379259007.webp" class="hs-bg" alt="Europe">
+                <div class="hs-overlay"></div>
+                <h2>Europe</h2>
+                <div class="hs-map-icon"><i class="fa-solid fa-earth-europe"></i></div>
+            </div>
+            <div class="hs-panel has-image" data-aos="fade-up" data-aos-delay="300" onclick="window.location.href='404.html'">
+                <img src="images/warehouse_robotics_1786379276885.webp" class="hs-bg" alt="Asia Pacific">
+                <div class="hs-overlay"></div>
+                <h2>Asia<br class="mobile-br">Pacific</h2>
+                <div class="hs-map-icon"><i class="fa-solid fa-earth-asia"></i></div>
+            </div>
+            <div class="hs-panel has-image" data-aos="fade-up" data-aos-delay="400" onclick="window.location.href='404.html'">
+                <img src="images/hero_logistics_1786379231105.webp" class="hs-bg" alt="Global Reach">
+                <div class="hs-overlay"></div>
+                <h2>Global<br class="mobile-br">Reach</h2>
+                <div class="hs-map-icon"><i class="fa-solid fa-globe"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Why Choose Us (Expandable Cards) -->
+    <section id="why-us" class="why-us-section container">
+        <h2 data-aos="fade-up">Why Choose Us</h2>
+        <div class="expand-grid">
+            <div class="expand-card active has-image" data-aos="slide-up" data-aos-delay="100" onclick="window.location.href='404.html'">
+                <img src="images/hero_luxury_1786380475025.webp" class="ec-bg" alt="Speed">
+                <div class="ec-overlay"></div>
+                <div class="ec-content-wrapper">
+                    <div class="ec-header">
+                        <i class="fa-solid fa-stopwatch"></i>
+                        <h3>Speed</h3>
+                    </div>
+                    <div class="ec-body">
+                        <p>Industry-leading transit times designed for modern commerce requirements. From local last-mile deliveries to intercontinental air freight, we ensure your goods arrive exactly when needed.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="expand-card has-image" data-aos="slide-up" data-aos-delay="200" onclick="window.location.href='404.html'">
+                <img src="images/ocean_luxury_1786380510636.webp" class="ec-bg" alt="Reliability">
+                <div class="ec-overlay"></div>
+                <div class="ec-content-wrapper">
+                    <div class="ec-header">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h3>Reliability</h3>
+                    </div>
+                    <div class="ec-body">
+                        <p>99.9% on-time delivery rate with fully insured cargo coverage across all nodes. Our dedicated account managers monitor your shipments 24/7 to preemptively solve any logistical hurdles.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="expand-card has-image" data-aos="slide-up" data-aos-delay="300" onclick="window.location.href='404.html'">
+                <img src="images/warehouse_light_1786380104045.webp" class="ec-bg warm-filter" alt="Technology">
+                <div class="ec-overlay"></div>
+                <div class="ec-content-wrapper">
+                    <div class="ec-header">
+                        <i class="fa-solid fa-microchip"></i>
+                        <h3>Technology</h3>
+                    </div>
+                    <div class="ec-body">
+                        <p>AI-driven routing, predictive analytics, and seamless API integrations. We put total supply chain visibility right at your fingertips through our custom enterprise dashboard.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Our Fleet (Premium Image Cards) -->
+    <section id="fleet" class="fleet-section container">
+        <h2 data-aos="fade-up">Our Modern Fleet</h2>
+        <div class="fleet-grid">
+            <div class="fleet-card has-image" data-aos="fade-up" data-aos-delay="100" onclick="window.location.href='404.html'">
+                <img src="images/truck_light_1786380118938.webp" alt="Heavy Duty Truck" class="fleet-bg warm-filter">
+                <div class="fleet-overlay"></div>
+                <div class="fleet-content text-light">
+                    <i class="fa-solid fa-truck-monster"></i>
+                    <h3>Heavy Duty</h3>
+                </div>
+            </div>
+            <div class="fleet-card has-image" data-aos="fade-up" data-aos-delay="200" onclick="window.location.href='404.html'">
+                <img src="images/air_luxury_1786380492961.webp" alt="Express Air" class="fleet-bg">
+                <div class="fleet-overlay"></div>
+                <div class="fleet-content text-light">
+                    <i class="fa-solid fa-plane"></i>
+                    <h3>Express Air</h3>
+                </div>
+            </div>
+            <div class="fleet-card has-image" data-aos="fade-up" data-aos-delay="300" onclick="window.location.href='404.html'">
+                <img src="images/ocean_luxury_1786380510636.webp" alt="Ocean Cargo" class="fleet-bg">
+                <div class="fleet-overlay"></div>
+                <div class="fleet-content text-light">
+                    <i class="fa-solid fa-ship"></i>
+                    <h3>Ocean Cargo</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Industries We Serve -->
+    <section id="industries" class="industries-section container">
+        <h2 class="section-title" data-aos="fade-up">Industries We Serve</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Tailored supply chain solutions for the world's most demanding sectors.</p>
+        <div class="industries-grid">
+            <div class="industry-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fa-solid fa-pills"></i>
+                <h3>Healthcare & Pharma</h3>
+                <p>Temperature-controlled transport and rigorous compliance for critical medical supplies.</p>
+            </div>
+            <div class="industry-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-microchip"></i>
+                <h3>High-Tech & Electronics</h3>
+                <p>High-security handling and anti-static packaging for sensitive components.</p>
+            </div>
+            <div class="industry-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fa-solid fa-shirt"></i>
+                <h3>Retail & Apparel</h3>
+                <p>Fast-fashion distribution, seasonal scale-ups, and omnichannel fulfillment.</p>
+            </div>
+            <div class="industry-card" data-aos="fade-up" data-aos-delay="400">
+                <i class="fa-solid fa-car"></i>
+                <h3>Automotive</h3>
+                <p>Just-in-time delivery and aftermarket parts logistics to keep assembly lines moving.</p>
+            </div>
+            <div class="industry-card" data-aos="fade-up" data-aos-delay="500">
+                <i class="fa-solid fa-industry"></i>
+                <h3>Industrial Manufacturing</h3>
+                <p>Heavy-lift capabilities and oversized cargo transport for complex machinery.</p>
+            </div>
+            <div class="industry-card" data-aos="fade-up" data-aos-delay="600">
+                <i class="fa-solid fa-basket-shopping"></i>
+                <h3>E-Commerce & FMCG</h3>
+                <p>High-volume sorting, rapid dispatch, and seamless reverse logistics.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Technology (Sticky Scroll) -->
+    <section id="technology" class="technology-section">
+        <div class="sticky-container">
+            <div class="sticky-bg">
+                <h2>Driven by Data</h2>
+            </div>
+            <div class="scrolling-content">
+                <div class="scroll-card has-image">
+                    <img src="images/air_luxury_1786380492961.webp" class="sc-bg" alt="IoT Sensors">
+                    <div class="sc-overlay"></div>
+                    <div class="sc-text">
+                        <i class="fa-solid fa-network-wired"></i>
+                        <h3>IoT Sensors</h3>
+                        <p>Real-time monitoring of temperature, humidity, and shock conditions. Our advanced sensor network ensures sensitive cargo remains perfectly preserved from origin to destination.</p>
+                    </div>
+                </div>
+                <div class="scroll-card has-image">
+                    <img src="images/ocean_luxury_1786380510636.webp" class="sc-bg" alt="Cloud Infrastructure">
+                    <div class="sc-overlay"></div>
+                    <div class="sc-text">
+                        <i class="fa-solid fa-server"></i>
+                        <h3>Cloud Infrastructure</h3>
+                        <p>Scalable architecture optimized for enterprise needs. Access your supply chain data securely from anywhere in the world with zero downtime.</p>
+                    </div>
+                </div>
+                <div class="scroll-card has-image">
+                    <img src="images/hero_luxury_1786380475025.webp" class="sc-bg" alt="Automated Warehouses">
+                    <div class="sc-overlay"></div>
+                    <div class="sc-text">
+                        <i class="fa-solid fa-robot"></i>
+                        <h3>Automated Warehouses</h3>
+                        <p>Robotics ensuring incredibly fast, error-free processing. Our state-of-the-art facilities reduce fulfillment time by over 40% compared to traditional operations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: Sustainability (Stick Sections - Stacking) -->
+    <section id="sustainability" class="sustainability-section">
+        <div class="stack-card card-1 has-image">
+            <img src="images/hero_logistics_1786379231105.webp" class="stack-bg warm-filter" alt="Carbon Neutral">
+            <div class="stack-overlay"></div>
+            <div class="stack-content">
+                <i class="fa-solid fa-leaf"></i>
+                <h2>Carbon Neutral</h2>
+                <p>Fully committed to zero emissions by 2030 through rigorous offsetting and optimized routing.</p>
+            </div>
+        </div>
+        <div class="stack-card card-2 has-image">
+            <img src="images/ocean_luxury_1786380510636.webp" class="stack-bg" alt="Renewable Energy">
+            <div class="stack-overlay"></div>
+            <div class="stack-content">
+                <i class="fa-solid fa-solar-panel"></i>
+                <h2>Renewable Energy</h2>
+                <p>Our global facilities are powered by 100% solar energy and sustainable grid alternatives.</p>
+            </div>
+        </div>
+        <div class="stack-card card-3 has-image">
+            <img src="images/warehouse_robotics_1786379276885.webp" class="stack-bg" alt="Eco Packaging">
+            <div class="stack-overlay"></div>
+            <div class="stack-content">
+                <i class="fa-solid fa-recycle"></i>
+                <h2>Eco Packaging</h2>
+                <p>Utilizing exclusively biodegradable and recycled materials for all fulfillment shipments worldwide.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 11: Client Reviews (Flip Cards) -->
+    <section id="reviews" class="reviews-section container">
+        <h2 data-aos="fade-up">What They Say</h2>
+        <div class="flip-grid">
+            <div class="flip-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="flip-inner">
+                    <div class="flip-front has-image">
+                        <img src="images/warehouse_light_1786380104045.webp" class="flip-bg" alt="TechCorp">
+                        <div class="flip-overlay"></div>
+                        <div class="flip-text">
+                            <div class="stars">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <h3>TechCorp</h3>
+                        </div>
+                    </div>
+                    <div class="flip-back">
+                        <p>"Incredible speed and reliability for our component shipments."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card" data-aos="flip-right" data-aos-delay="200">
+                <div class="flip-inner">
+                    <div class="flip-front has-image">
+                        <img src="images/truck_light_1786380118938.webp" class="flip-bg" alt="GlobalRetail">
+                        <div class="flip-overlay"></div>
+                        <div class="flip-text">
+                            <div class="stars">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <h3>GlobalRetail</h3>
+                        </div>
+                    </div>
+                    <div class="flip-back">
+                        <p>"The real-time tracking gives us total peace of mind."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 12: Footer (Call to Action) -->
+    <footer id="footer" class="footer-section has-image">
+        <img src="images/hero_logistics_1786379231105.webp" class="footer-bg" alt="Footer Background">
+        <div class="footer-overlay"></div>
+        <div class="footer-content-wrapper">
+            <div class="footer-content" data-aos="fade-up">
+                <h2>Ready to Optimize Your Logistics?</h2>
+                <p>Join thousands of businesses scaling globally.</p>
+                <a href="contact.html" class="btn btn-large btn-solid">Get a Quote</a>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="about.html">About</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-meta">
+                    <p>&copy; 2026 Stackly Logistics. All rights reserved.</p>
+                    <div class="socials">
+                        <a href="404.html" onclick="window.location.href='404.html'; return false;"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="404.html" onclick="window.location.href='404.html'; return false;"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="404.html" onclick="window.location.href='404.html'; return false;"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html" onclick="window.location.href='404.html'; return false;"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>

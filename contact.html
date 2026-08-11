@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | Stackly Logistics</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&display=swap"
+        rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+
+<body>
+
+    <!-- ============================================================
+    SECTION 1: HEADER (exact copy from services.html)
+    ============================================================ -->
+    <header id="header" class="header-section">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo_trimmed.webp" alt="Stackly Logistics Logo"
+                        class="nav-logo"></a>
+            </div>
+
+            <!-- Mobile Hamburger Toggle -->
+            <div class="hamburger-menu sticky-hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <nav class="nav-links sticky-links">
+                <div class="menu-close"><i class="fa-solid fa-xmark"></i></div>
+                <a href="index.html">HOME</a>
+                <a href="services.html">SERVICES</a>
+                <a href="about.html">ABOUT</a>
+                <a href="blog.html">BLOG</a>
+                <a href="contact.html" class="active">CONTACT</a>
+                <div class="mobile-auth-links">
+                    <a href="login.html">LOGIN</a>
+                    <a href="signup.html" class="mobile-signup-btn">SIGN UP</a>
+                </div>
+            </nav>
+            <div class="nav-actions" style="display: flex; align-items: center; gap: 20px;">
+                <a href="login.html"
+                    style="font-weight: 500; font-size: 0.95rem; color: #4A4A4A; text-transform: uppercase; letter-spacing: 1px;">Login</a>
+                <a href="signup.html" class="btn btn-nav">Signup</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    SECTION 2: CONTACT HERO
+    ============================================================ -->
+    <section class="contact-hero" data-aos="fade-down" data-aos-duration="1000">
+        <div class="hero-badge">
+            <i class="fa-solid fa-envelope"></i> Get in Touch
+        </div>
+        <h1 data-aos="fade-up" data-aos-delay="200">
+            Let's <span>Connect</span>
+        </h1>
+        <p data-aos="fade-up" data-aos-delay="300">
+            Have a question, a project in mind, or need a logistics solution?
+            We're here to help. Reach out and let's start the conversation.
+        </p>
+    </section>
+
+    <!-- ============================================================
+    SECTION 3: CONTACT INFO CARDS
+    ============================================================ -->
+    <section style="padding: 0 24px; position: relative; z-index: 2;" data-aos="fade-up" data-aos-delay="100">
+        <div class="contact-info-grid">
+            <div class="contact-info-card">
+                <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+                <h4>Visit Us</h4>
+                <p>One World Trade Center<br />Salem 4500, TN 10007, INDIA</p>
+            </div>
+            <div class="contact-info-card">
+                <div class="icon"><i class="fa-solid fa-phone"></i></div>
+                <h4>Call Us</h4>
+                <p><a href="404.html">+91 (800) 555‑1234</a><br />Available 24/7</p>
+            </div>
+            <div class="contact-info-card">
+                <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+                <h4>Email Us</h4>
+                <p><a href="404.html">hello@stacklylogistics.com</a><br />We respond within 24h
+                </p>
+            </div>
+            <div class="contact-info-card">
+                <div class="icon"><i class="fa-solid fa-clock"></i></div>
+                <h4>Business Hours</h4>
+                <p>Mon – Fri: 8:00 AM – 8:00 PM EST<br />Sat: 9:00 AM – 5:00 PM EST</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 4: CONTACT FORM + MAP
+    ============================================================ -->
+    <section class="contact-form-section" id="contact-form">
+        <h2 class="section-title" data-aos="fade-up">Send a Message</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Fill in the details below and we'll get back to you promptly.
+        </p>
+
+        <div class="contact-form-wrap">
+            <!-- Form Side -->
+            <div class="form-wrapper" data-aos="fade-right" data-aos-duration="800">
+                <h3>Get in Touch</h3>
+                <p class="form-sub">We'd love to hear from you. Please fill out the form below.</p>
+                <form id="contactForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group" id="firstNameGroup">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" placeholder="John" required />
+                            <div class="error-msg" id="firstNameError">Please enter your first name.</div>
+                        </div>
+                        <div class="form-group" id="lastNameGroup">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" placeholder="Doe" required />
+                            <div class="error-msg" id="lastNameError">Please enter your last name.</div>
+                        </div>
+                    </div>
+                    <div class="form-group" id="emailGroup">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="you@example.com" required />
+                        <div class="error-msg" id="emailError">Please enter a valid email address.</div>
+                    </div>
+                    <div class="form-group" id="phoneGroup">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="+1 (555) 000-0000" />
+                        <div class="error-msg" id="phoneError">Please enter a valid phone number.</div>
+                    </div>
+                    <div class="form-group" id="subjectGroup">
+                        <label for="subject">Subject</label>
+                        <select id="subject">
+                            <option value="">Select a topic...</option>
+                            <option value="quote">Request a Quote</option>
+                            <option value="support">Customer Support</option>
+                            <option value="partnership">Partnership Inquiry</option>
+                            <option value="careers">Careers</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="error-msg" id="subjectError">Please select a subject.</div>
+                    </div>
+                    <div class="form-group" id="messageGroup">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" placeholder="Tell us about your logistics needs..." required></textarea>
+                        <div class="error-msg" id="messageError">Please enter your message (at least 10 characters).
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn-submit" id="submitBtn">
+                            <i class="fa-solid fa-paper-plane"></i> Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Map Side -->
+            <div class="map-wrapper" data-aos="fade-left" data-aos-duration="800">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.01369368400567!3d40.71312937933039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316bb7afb7%3A0x8b4c5c5c5c5c5c5c!2sOne%20World%20Trade%20Center!5e0!3m2!1sen!2sus!4v1700000000000"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    title="Stackly Logistics Office Location" style="border:0;"></iframe>
+            </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 4: DEPARTMENT-SPECIFIC CONTACTS
+    ============================================================ -->
+    <section class="dept-section">
+        <h2 class="section-title" data-aos="fade-up">Direct Channels</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Reach out to our specialized teams for faster assistance and response times.
+        </p>
+        <div class="dept-grid">
+            <div class="dept-card" data-aos="fade-up" data-aos-delay="100">
+                <span class="dept-tag">Customer Care</span>
+                <h4>Support & Tracking</h4>
+                <p>Get real-time updates on active , request cargo routing adjustments, or file claims.</p>
+                <a href="404.html" class="contact-link"><i class="fa-solid fa-envelope"></i> support@stackly.com</a>
+            </div>
+            <div class="dept-card" data-aos="fade-up" data-aos-delay="150">
+                <span class="dept-tag">Enterprise</span>
+                <h4>Sales & Partnerships</h4>
+                <p>Discuss volume pricing, custom supply chain, or global logistics contracts.</p>
+                <a href="404.html" class="contact-link"><i class="fa-solid fa-envelope"></i> sales@stackly.com</a>
+            </div>
+            <div class="dept-card" data-aos="fade-up" data-aos-delay="200">
+                <span class="dept-tag">People</span>
+                <h4>Careers & HR</h4>
+                <p>Explore employment opportunities, submit resumes, or verify job applications.</p>
+                <a href="404.html" class="contact-link"><i class="fa-solid fa-envelope"></i>
+                    careers@stackly.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 5: OFFICE LOCATIONS
+    ============================================================ -->
+    <section class="offices-section">
+        <h2 class="section-title" data-aos="fade-up">Our Global Hubs</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Strategically located to serve your business wherever it operates.
+        </p>
+        <div class="offices-grid">
+            <div class="office-card">
+                <span class="icon"><i class="fa-solid fa-earth-americas"></i></span>
+                <h4>North America</h4>
+                <span class="city">New York, USA</span>
+                <p>One World Trade Center<br />Suite 4500, NY 10007</p>
+                <a href="tel:+18005551234" class="phone-link">+1 (800) 555‑1234</a>
+            </div>
+            <div class="office-card">
+                <span class="icon"><i class="fa-solid fa-earth-europe"></i></span>
+                <h4>Europe</h4>
+                <span class="city">London, UK</span>
+                <p>20 Fenchurch Street<br />London EC3M 3AG</p>
+                <a href="tel:+44205551234" class="phone-link">+44 20 5555‑1234</a>
+            </div>
+            <div class="office-card">
+                <span class="icon"><i class="fa-solid fa-earth-asia"></i></span>
+                <h4>Asia Pacific</h4>
+                <span class="city">Salem, India</span>
+                <p>123, Omalur Main Road<br />Salem - 636001, Tamil Nadu</p>
+                <a href="tel:+919876543210" class="phone-link">+91 98765 43210</a>
+            </div>
+            <div class="office-card">
+                <span class="icon"><i class="fa-solid fa-earth-americas"></i></span>
+                <h4>South America</h4>
+                <span class="city">São Paulo, Brazil</span>
+                <p>Av. Paulista, 1000<br />Bela Vista, São Paulo - SP, 01310-100</p>
+                <a href="tel:+551155551234" class="phone-link">+55 11 5555‑1234</a>
+            </div>
+            <div class="office-card">
+                <span class="icon"><i class="fa-solid fa-earth-africa"></i></span>
+                <h4>Middle East & Africa</h4>
+                <span class="city">Dubai, UAE</span>
+                <p>The Exchange Tower<br />Business Bay, Dubai</p>
+                <a href="tel:+97145551234" class="phone-link">+971 4 555‑1234</a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- ============================================================
+SECTION: FAQ 
+============================================================ -->
+    <section class="faq-section" id="faq">
+        <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Quick answers to the most common questions we receive.
+        </p>
+        <div class="faq-container">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item active" data-aos="fade-up" data-aos-delay="100">
+                <div class="question" onclick="toggleFaq(this)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                    How quickly can I get a quote?
+                    <span class="arrow"></span>
+                </div>
+                <div class="answer">
+                    <p>We typically respond with a detailed quote within 2–4 business hours during normal operating
+                        hours. For urgent requests, give us a call at +1 (800) 555‑1234.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="150">
+                <div class="question" onclick="toggleFaq(this)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                    Do you ship internationally?
+                    <span class="arrow"></span>
+                </div>
+                <div class="answer">
+                    <p>Yes! We operate in 120+ countries across North America, Europe, Asia Pacific, and beyond. Our
+                        network covers all major trade routes.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="question" onclick="toggleFaq(this)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                    What types of cargo do you handle?
+                    <span class="arrow"></span>
+                </div>
+                <div class="answer">
+                    <p>We handle everything from small parcels and palletized freight to oversized machinery,
+                        temperature‑sensitive goods, and hazardous materials.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="250">
+                <div class="question" onclick="toggleFaq(this)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                    Can I track my shipment in real‑time?
+                    <span class="arrow"></span>
+                </div>
+                <div class="answer">
+                    <p>Absolutely. Every shipment comes with a unique tracking number. Our platform provides live GPS
+                        updates and status notifications.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="question" onclick="toggleFaq(this)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                    What payment methods do you accept?
+                    <span class="arrow"></span>
+                </div>
+                <div class="answer">
+                    <p>We accept all major credit cards, bank transfers, and corporate invoicing. Custom payment terms
+                        are available for long‑term partners.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 6 -->
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="350">
+                <div class="question" onclick="toggleFaq(this)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                    Do you offer warehousing services?
+                    <span class="arrow"></span>
+                </div>
+                <div class="answer">
+                    <p>Yes, we operate smart warehouses with AI‑driven inventory management, climate control, and 24/7
+                        security across all our hub locations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+SECTION 7: STATS / TRUST INDICATORS
+============================================================ -->
+    <section class="stats-section">
+        <h2 class="section-title" data-aos="fade-up">Trusted Worldwide</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Numbers that speak for themselves.
+        </p>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="number">120+</span>
+                <span class="label">Countries Served</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">99.9%</span>
+                <span class="label">On‑Time Delivery</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">2.3k+</span>
+                <span class="label">Happy Clients</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">24/7</span>
+                <span class="label">Active Support</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+SECTION 8: CTA / GET IN TOUCH
+============================================================ -->
+    <section class="cta-section">
+        <div class="cta-content" data-aos="fade-up">
+            <h2>Ready to Move Forward?</h2>
+            <p>
+                Join thousands of businesses that trust us to deliver their most
+                important shipments — on time, every time.
+            </p>
+            <a href="#contact-form" class="btn btn-large">Get Started Today</a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+SECTION 9: FOOTER (exact copy from services.html)
+============================================================ -->
+    <footer id="footer" class="footer-section has-image">
+        <img src="images/hero_logistics_1786379231105.webp" class="footer-bg" alt="Footer Background">
+        <div class="footer-overlay"></div>
+        <div class="footer-content-wrapper">
+            <div class="footer-content" data-aos="fade-up">
+                <h2>Stackly Logistics</h2>
+                <p>Intelligent routing, style follows every shipment.</p>
+                <a href="contact.html" class="btn btn-solid">Get a Quote</a>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="about.html">About</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-meta">
+                    <p>&copy; 2026 Stackly Logistics. All rights reserved.</p>
+                    <div class="socials">
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+TOAST NOTIFICATION
+============================================================ -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-check-circle"></i>
+        <span id="toastMessage">Message sent successfully!</span>
+    </div>
+
+    <!-- ============================================================
+SCRIPTS
+============================================================ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // ============================================================
+        // FAQ TOGGLE
+        // ============================================================
+        function toggleFaq(element) {
+            const item = element.closest('.faq-item');
+            const isActive = item.classList.contains('active');
+
+            // Close all other items
+            document.querySelectorAll('.faq-item').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // ============================================================
+        // CONTACT FORM VALIDATION + REDIRECT TO 404.html
+        // ============================================================
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+
+        // Real-time validation clearing
+        document.querySelectorAll('#contactForm input, #contactForm textarea, #contactForm select').forEach(el => {
+            el.addEventListener('input', () => {
+                const group = el.closest('.form-group');
+                if (group) {
+                    group.classList.remove('error');
+                    const errorMsg = group.querySelector('.error-msg');
+                    if (errorMsg) errorMsg.classList.remove('show');
+                }
+            });
+            el.addEventListener('change', () => {
+                const group = el.closest('.form-group');
+                if (group) {
+                    group.classList.remove('error');
+                    const errorMsg = group.querySelector('.error-msg');
+                    if (errorMsg) errorMsg.classList.remove('show');
+                }
+            });
+        });
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            let isValid = true;
+
+            // First Name
+            const firstName = document.getElementById('firstName').value.trim();
+            const firstNameGroup = document.getElementById('firstNameGroup');
+            const firstNameError = document.getElementById('firstNameError');
+            if (!firstName || firstName.length < 2) {
+                firstNameGroup.classList.add('error');
+                firstNameError.classList.add('show');
+                isValid = false;
+            } else {
+                firstNameGroup.classList.remove('error');
+                firstNameError.classList.remove('show');
+            }
+
+            // Last Name
+            const lastName = document.getElementById('lastName').value.trim();
+            const lastNameGroup = document.getElementById('lastNameGroup');
+            const lastNameError = document.getElementById('lastNameError');
+            if (!lastName || lastName.length < 2) {
+                lastNameGroup.classList.add('error');
+                lastNameError.classList.add('show');
+                isValid = false;
+            } else {
+                lastNameGroup.classList.remove('error');
+                lastNameError.classList.remove('show');
+            }
+
+            // Email
+            const email = document.getElementById('email').value.trim();
+            const emailGroup = document.getElementById('emailGroup');
+            const emailError = document.getElementById('emailError');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailPattern.test(email)) {
+                emailGroup.classList.add('error');
+                emailError.classList.add('show');
+                isValid = false;
+            } else {
+                emailGroup.classList.remove('error');
+                emailError.classList.remove('show');
+            }
+
+            // Phone (optional but validate if filled)
+            const phone = document.getElementById('phone').value.trim();
+            const phoneGroup = document.getElementById('phoneGroup');
+            const phoneError = document.getElementById('phoneError');
+            if (phone && phone.length < 7) {
+                phoneGroup.classList.add('error');
+                phoneError.classList.add('show');
+                isValid = false;
+            } else {
+                phoneGroup.classList.remove('error');
+                phoneError.classList.remove('show');
+            }
+
+            // Subject
+            const subject = document.getElementById('subject').value;
+            const subjectGroup = document.getElementById('subjectGroup');
+            const subjectError = document.getElementById('subjectError');
+            if (!subject) {
+                subjectGroup.classList.add('error');
+                subjectError.classList.add('show');
+                isValid = false;
+            } else {
+                subjectGroup.classList.remove('error');
+                subjectError.classList.remove('show');
+            }
+
+            // Message
+            const message = document.getElementById('message').value.trim();
+            const messageGroup = document.getElementById('messageGroup');
+            const messageError = document.getElementById('messageError');
+            if (!message || message.length < 10) {
+                messageGroup.classList.add('error');
+                messageError.classList.add('show');
+                isValid = false;
+            } else {
+                messageGroup.classList.remove('error');
+                messageError.classList.remove('show');
+            }
+
+            if (!isValid) {
+                // Show toast with error message
+                toastMessage.textContent = 'Please fix the errors in the form.';
+                toast.style.borderLeftColor = '#d1453b';
+                toast.querySelector('i').className = 'fa-solid fa-exclamation-circle';
+                toast.querySelector('i').style.color = '#d1453b';
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 4000);
+
+                // Scroll to first error
+                const firstError = document.querySelector('.form-group.error');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
+
+            // Show success toast
+            toastMessage.textContent = 'Message sent! Redirecting...';
+            toast.style.borderLeftColor = '#2EA043';
+            toast.querySelector('i').className = 'fa-solid fa-check-circle';
+            toast.querySelector('i').style.color = '#2EA043';
+            toast.classList.add('show');
+
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+
+            // Redirect to 404.html after 1.5 seconds
+            setTimeout(() => {
+                window.location.href = '404.html';
+            }, 1500);
+        });
+
+        window.addEventListener('pageshow', function (event) {
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            if (form) {
+                form.reset();
+                // Remove error states
+                document.querySelectorAll('.form-group.error').forEach(el => el.classList.remove('error'));
+                document.querySelectorAll('.error-msg.show').forEach(el => el.classList.remove('show'));
+            }
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+            }
+            const toast = document.getElementById('toast');
+            if (toast) toast.classList.remove('show');
+        });
+
+        // ============================================================
+        // GSAP SCROLL ANIMATIONS
+        // ============================================================
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Contact info cards stagger
+        gsap.utils.toArray('.contact-info-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 90%',
+                    toggleActions: 'play none none reverse',
+                },
+                opacity: 0,
+                y: 40,
+                duration: 0.7,
+                delay: i * 0.12,
+                ease: 'back.out(1.2)',
+            });
+        });
+
+        // Office cards stagger
+        gsap.utils.toArray('.office-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 90%',
+                    toggleActions: 'play none none reverse',
+                },
+                opacity: 0,
+                y: 40,
+                duration: 0.7,
+                delay: i * 0.12,
+                ease: 'back.out(1.2)',
+            });
+        });
+
+        // Stats animate on scroll
+        // ============================================================
+        // ANIMATE STATS (Counter)
+        // ============================================================
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-item .number');
+            stats.forEach(stat => {
+                const text = stat.textContent.trim();
+                const num = parseFloat(text.replace(/[+,%]/g, ''));
+                const suffix = text.replace(/[0-9.]/g, '');
+                if (isNaN(num)) return;
+
+                // Reset to 0 before counting up
+                stat.textContent = '0' + suffix;
+                let obj = { val: 0 };
+                gsap.to(obj, {
+                    val: num,
+                    duration: 2.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: stat,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    onUpdate: () => {
+                        if (Number.isInteger(num)) {
+                            stat.textContent = Math.floor(obj.val) + suffix;
+                        } else {
+                            stat.textContent = obj.val.toFixed(1) + suffix;
+                        }
+                    },
+                    onComplete: () => {
+                        stat.textContent = text; // ensure final value
+                    }
+                });
+            });
+        }
+
+        // Call this after your other GSAP animations
+        animateStats();
+
+        // Hero badge pulse
+        const heroBadge = document.querySelector('.hero-badge');
+        if (heroBadge) {
+            gsap.to(heroBadge, {
+                scale: 1.05,
+                boxShadow: '0 0 25px rgba(255,255,255,0.15)',
+                duration: 2.5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+            });
+        }
+
+        console.log('🚀 Contact page ready.');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,2749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard | Logistics Solutions</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
+    </script>
+    <style>
+        /* Global Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.02); }
+        ::-webkit-scrollbar-thumb { background: rgba(59, 84, 65, 0.3); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(59, 84, 65, 0.6); }
+
+        /* ============================================================
+           ROOT & RESET — Mint + Olive Green Theme
+           ============================================================ */
+        :root {
+            --bg-color: #3B5441;
+            --accent-color: #F9A03F;
+            --text-color: #121212;
+            --bento-light: #E4F5DF;
+            --bento-dark: #233325;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --sidebar-width: 280px;
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bento-light);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Background Net Canvas */
+        #bg-net {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ============================================================
+                   SIDEBAR
+                   ============================================================ */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-right: 1px solid rgba(59, 84, 65, 0.06);
+            padding: 24px 16px 20px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 10px;
+        }
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #d4882e;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(59, 84, 65, 0.06);
+            margin-bottom: 20px;
+            flex-shrink: 0;
+            gap: 0;
+        }
+        .sidebar-logo .logo-icon {
+            height: 50px;
+            width: 180px;
+            background-color: var(--bg-color);
+            -webkit-mask: url('images/logo_trimmed.webp') no-repeat center / contain;
+            mask: url('images/logo_trimmed.webp') no-repeat center / contain;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding-bottom: 16px;
+            overflow-y: auto;
+        }
+
+        .sidebar-nav::-webkit-scrollbar {
+            width: 3px;
+        }
+        .sidebar-nav::-webkit-scrollbar-thumb {
+            background: rgba(59, 84, 65, 0.15);
+            border-radius: 10px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 11px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #5a6b5f;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        .nav-link i {
+            width: 20px;
+            font-size: 1.05rem;
+            color: #7a8a7e;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            background: rgba(59, 84, 65, 0.04);
+            color: var(--bg-color);
+        }
+        .nav-link:hover i {
+            color: var(--bg-color);
+        }
+        .nav-link.active {
+            background: var(--bg-color);
+            color: #fff;
+            border-color: var(--bg-color);
+            box-shadow: 0 8px 24px rgba(59, 84, 65, 0.12);
+        }
+        .nav-link.active i {
+            color: #fff;
+        }
+        .nav-link .badge {
+            margin-left: auto;
+            background: var(--accent-color);
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 1px 10px;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid rgba(59, 84, 65, 0.06);
+            padding-top: 14px;
+            flex-shrink: 0;
+        }
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 11px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #d1453b;
+            background: transparent;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-family: var(--font-body);
+        }
+        .logout-btn i {
+            width: 20px;
+            font-size: 1.05rem;
+        }
+        .logout-btn:hover {
+            background: rgba(209, 69, 59, 0.06);
+            border-color: rgba(209, 69, 59, 0.1);
+        }
+
+        /* ============================================================
+                   MAIN CONTENT
+                   ============================================================ */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            min-height: 100vh;
+            padding: 24px 32px 40px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        /* Header */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0 20px;
+            border-bottom: 1px solid rgba(59, 84, 65, 0.06);
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .main-header .greeting {
+            font-size: 1.5rem;
+            font-family: var(--font-heading);
+            color: var(--bg-color);
+            font-weight: 600;
+        }
+        .main-header .greeting span {
+            color: var(--accent-color);
+        }
+        .main-header .greeting .admin-tag {
+            font-size: 0.7rem;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 2px 14px;
+            border-radius: 30px;
+            margin-left: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .main-header .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .header-actions .notification {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(59, 84, 65, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5a6b5f;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .header-actions .notification:hover {
+            background: #fff;
+            border-color: var(--accent-color);
+        }
+        .header-actions .notification .dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            background: #d1453b;
+            border-radius: 50%;
+            border: 2px solid var(--bento-light);
+        }
+
+        /* Content Pages */
+        .content-page {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .content-page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: var(--bg-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: #5a6b5f;
+            margin-bottom: 16px;
+        }
+
+        /* ============================================================
+                   ROW STYLES
+                   ============================================================ */
+        .row {
+            margin-bottom: 28px;
+        }
+        .row:last-child {
+            margin-bottom: 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+        .stat-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 22px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+        }
+        .stat-card .icon {
+            font-size: 1.6rem;
+            color: var(--accent-color);
+            margin-bottom: 6px;
+            display: block;
+        }
+        .stat-card .number {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--bg-color);
+            display: block;
+        }
+        .stat-card .label {
+            font-size: 0.8rem;
+            color: #5a6b5f;
+            font-weight: 500;
+        }
+
+        .table-wrapper {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            overflow-x: auto;
+        }
+        .table-wrapper table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .table-wrapper th {
+            text-align: left;
+            padding: 10px 8px 10px 0;
+            font-weight: 600;
+            color: var(--bg-color);
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(59, 84, 65, 0.06);
+        }
+        .table-wrapper td {
+            padding: 12px 8px 12px 0;
+            border-bottom: 1px solid rgba(59, 84, 65, 0.04);
+            color: #4a5a4e;
+        }
+        .table-wrapper tr:last-child td {
+            border-bottom: none;
+        }
+        .table-wrapper tbody tr {
+            cursor: default;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .status-badge.active {
+            background: rgba(46, 160, 67, 0.1);
+            color: #2EA043;
+        }
+        .status-badge.inactive {
+            background: rgba(209, 69, 59, 0.08);
+            color: #d1453b;
+        }
+        .status-badge.pending {
+            background: rgba(249, 160, 63, 0.1);
+            color: var(--accent-color);
+        }
+        .status-badge.suspended {
+            background: rgba(209, 69, 59, 0.08);
+            color: #d1453b;
+        }
+        .status-badge.delivered {
+            background: rgba(46, 160, 67, 0.1);
+            color: #2EA043;
+        }
+        .status-badge.in-transit {
+            background: rgba(249, 160, 63, 0.1);
+            color: var(--accent-color);
+        }
+        .status-badge.picked {
+            background: rgba(59, 84, 65, 0.08);
+            color: var(--bg-color);
+        }
+        .status-badge.customs {
+            background: rgba(209, 69, 59, 0.08);
+            color: #d1453b;
+        }
+        .status-badge.out-delivery {
+            background: rgba(249, 160, 63, 0.1);
+            color: var(--accent-color);
+        }
+        .status-badge.paid {
+            background: rgba(46, 160, 67, 0.1);
+            color: #2EA043;
+        }
+        .status-badge.overdue {
+            background: rgba(209, 69, 59, 0.08);
+            color: #d1453b;
+        }
+        .status-badge.success {
+            background: rgba(46, 160, 67, 0.1);
+            color: #2EA043;
+        }
+        .status-badge.failed {
+            background: rgba(209, 69, 59, 0.08);
+            color: #d1453b;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .chart-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            cursor: default;
+        }
+        .chart-card h4 {
+            font-size: 0.95rem;
+            color: var(--bg-color);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .chart-card .chart-container {
+            height: 220px;
+            position: relative;
+        }
+        .chart-card .chart-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .pagination-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-top: 14px;
+        }
+        .pagination-controls .info {
+            font-size: 0.8rem;
+            color: #5a6b5f;
+        }
+        .pagination-controls .pages {
+            display: flex;
+            gap: 4px;
+        }
+        .pagination-controls .pages span {
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #5a6b5f;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .pagination-controls .pages span:hover {
+            background: rgba(59, 84, 65, 0.04);
+        }
+        .pagination-controls .pages span.active {
+            background: var(--bg-color);
+            color: #fff;
+            border-color: var(--bg-color);
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            background: #fff;
+            padding: 14px 18px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            align-items: center;
+        }
+        .search-bar input {
+            flex: 1;
+            min-width: 180px;
+            padding: 9px 14px;
+            border: 1px solid rgba(59, 84, 65, 0.08);
+            border-radius: 10px;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            outline: none;
+            transition: all 0.3s ease;
+            background: var(--bento-light);
+        }
+        .search-bar input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(249, 160, 63, 0.08);
+        }
+        .search-bar .btn-search {
+            padding: 9px 20px;
+            background: var(--bg-color);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+        }
+        .search-bar .btn-search:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(249, 160, 63, 0.25);
+        }
+
+        .profile-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            cursor: default;
+        }
+        .profile-card .avatar {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 2.4rem;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            flex-shrink: 0;
+        }
+        .profile-card .info {
+            flex: 1;
+            min-width: 180px;
+        }
+        .profile-card .info h3 {
+            font-size: 1.3rem;
+            color: var(--bg-color);
+            margin-bottom: 2px;
+        }
+        .profile-card .info .email {
+            color: #5a6b5f;
+            margin-bottom: 14px;
+            font-size: 0.9rem;
+        }
+        .profile-card .info .field {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .profile-card .info .field .item {
+            flex: 1;
+            min-width: 100px;
+        }
+        .profile-card .info .field .item .label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #7a8a7e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .profile-card .info .field .item .value {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--bg-color);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 9px 14px;
+            border: 1px solid rgba(59, 84, 65, 0.08);
+            border-radius: 10px;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            outline: none;
+            transition: all 0.3s ease;
+            background: var(--bento-light);
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(249, 160, 63, 0.08);
+        }
+        .form-group .btn-save {
+            padding: 9px 28px;
+            background: var(--bg-color);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-body);
+            margin-top: 6px;
+            font-size: 0.85rem;
+        }
+        .form-group .btn-save:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(249, 160, 63, 0.25);
+        }
+
+        .notification-item {
+            display: flex;
+            gap: 16px;
+            padding: 14px 16px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            cursor: default;
+        }
+        .notification-item:hover {
+            background: var(--bento-light);
+            border-color: rgba(59, 84, 65, 0.06);
+        }
+        .notification-item .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(249, 160, 63, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            flex-shrink: 0;
+        }
+        .notification-item .content {
+            flex: 1;
+        }
+        .notification-item .content .title {
+            font-weight: 600;
+            color: var(--bg-color);
+            font-size: 0.9rem;
+        }
+        .notification-item .content .desc {
+            font-size: 0.8rem;
+            color: #5a6b5f;
+        }
+        .notification-item .content .time {
+            font-size: 0.7rem;
+            color: #7a8a7e;
+            margin-top: 4px;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            cursor: default;
+        }
+        .detail-item .label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #7a8a7e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .detail-item .value {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-color);
+            margin-top: 2px;
+        }
+
+        /* Toggle Switch for Settings */
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 0;
+            cursor: pointer;
+        }
+        .toggle-switch input[type="checkbox"] {
+            display: none;
+        }
+        .toggle-switch .slider {
+            width: 44px;
+            height: 24px;
+            background: #d0d8d2;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .toggle-switch .slider::before {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: #fff;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        .toggle-switch input:checked+.slider {
+            background: var(--bg-color);
+        }
+        .toggle-switch input:checked+.slider::before {
+            transform: translateX(20px);
+        }
+        .toggle-switch .label {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* Override cursor for non-interactive elements */
+        .stat-card,
+        .chart-card,
+        .table-wrapper tbody tr,
+        .notification-item,
+        .profile-card,
+        .detail-grid {
+            cursor: default;
+        }
+
+        /* Keep pointer on interactive elements */
+        .nav-link,
+        .logout-btn,
+        .notification,
+        .btn-search,
+        .btn-save,
+        .pagination-controls .pages span,
+        .hamburger-toggle,
+        .toggle-switch,
+        .toggle-switch .slider,
+        .toggle-switch .label {
+            cursor: pointer;
+        }
+
+        /* Table action links — disabled click */
+        .table-wrapper td a[href="#"],
+        .table-wrapper td .action-link {
+            cursor: default;
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-decoration: none;
+            pointer-events: none;
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        .hamburger-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--bg-color);
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.25);
+            z-index: 99;
+        }
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+            .detail-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                padding: 20px 20px 30px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 16px 14px 24px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .stat-card {
+                padding: 16px 14px;
+            }
+            .stat-card .number {
+                font-size: 1.4rem;
+            }
+            .stat-card .label {
+                font-size: 0.7rem;
+            }
+            .stat-card .icon {
+                font-size: 1.3rem;
+            }
+
+            .main-header .greeting {
+                font-size: 1.1rem;
+            }
+            .main-header .greeting .admin-tag {
+                font-size: 0.6rem;
+                padding: 1px 10px;
+                margin-left: 6px;
+            }
+            .hamburger-toggle {
+                display: flex !important;
+            }
+
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+            .chart-card .chart-container {
+                height: 180px;
+            }
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .profile-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+            }
+            .profile-card .info .field {
+                justify-content: center;
+            }
+
+            .page-title {
+                font-size: 1.3rem;
+            }
+
+            .search-bar {
+                padding: 12px 14px;
+                flex-direction: column;
+            }
+            .search-bar input {
+                min-width: 100%;
+                width: 100%;
+            }
+            .search-bar .btn-search {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .notification-item {
+                padding: 12px 14px;
+            }
+
+            .table-wrapper {
+                padding: 14px;
+            }
+            .table-wrapper table {
+                font-size: 0.75rem;
+            }
+            .table-wrapper th,
+            .table-wrapper td {
+                padding: 8px 6px 8px 0;
+            }
+
+            .pagination-controls {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .stat-card {
+                padding: 12px 10px;
+                border-radius: 12px;
+            }
+            .stat-card .number {
+                font-size: 1.2rem;
+            }
+            .stat-card .label {
+                font-size: 0.6rem;
+            }
+            .stat-card .icon {
+                font-size: 1.1rem;
+                margin-bottom: 4px;
+            }
+
+            .main-header .greeting {
+                font-size: 0.95rem;
+            }
+            .main-header .header-actions .notification {
+                width: 34px;
+                height: 34px;
+                font-size: 0.85rem;
+            }
+
+            .sidebar {
+                width: 260px;
+            }
+            .sidebar-logo .logo-icon {
+                height: 42px;
+                width: 150px;
+            }
+
+            .chart-card {
+                padding: 14px;
+            }
+            .chart-card .chart-container {
+                height: 150px;
+            }
+
+            .profile-card .avatar {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+            .profile-card .info h3 {
+                font-size: 1.1rem;
+            }
+
+            .main-content {
+                padding: 12px 10px 20px;
+            }
+            .page-title {
+                font-size: 1.1rem;
+                margin-bottom: 14px;
+            }
+            .row {
+                margin-bottom: 16px;
+            }
+
+            .detail-grid {
+                padding: 14px;
+            }
+            .detail-item .value {
+                font-size: 0.85rem;
+            }
+        }
+        
+        .close-sidebar-btn {
+            display: none;
+        }
+        @media (max-width: 992px) {
+            .close-sidebar-btn {
+                display: block;
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: var(--text-color);
+                cursor: pointer;
+                z-index: 1000;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Net -->
+    <canvas id="bg-net"></canvas>
+
+    <!-- Mobile Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
+
+    <!-- ============================================================
+    SIDEBAR — UNIQUE ADMIN NAVIGATION
+    ============================================================ -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Close Button (Mobile Only) -->
+        <button class="close-sidebar-btn" onclick="toggleSidebar(false)" aria-label="Close sidebar">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <!-- Logo -->
+        <a href="index.html" class="sidebar-logo" style="text-decoration: none; cursor: pointer;">
+            <div class="logo-icon"></div>
+        </a>
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+            <a class="nav-link active" data-page="dashboard" onclick="switchPage('dashboard')">
+                <i class="fa-solid fa-gauge-high"></i> Dashboard
+            </a>
+            <a class="nav-link" data-page="users" onclick="switchPage('users')">
+                <i class="fa-solid fa-user-gear"></i> User Management
+                <span class="badge">1.2k</span>
+            </a>
+            <a class="nav-link" data-page="fleet" onclick="switchPage('fleet')">
+                <i class="fa-solid fa-truck-fast"></i> Fleet & Logistics
+                <span class="badge">342</span>
+            </a>
+            <a class="nav-link" data-page="reports" onclick="switchPage('reports')">
+                <i class="fa-solid fa-chart-pie"></i> Business Reports
+            </a>
+            <a class="nav-link" data-page="financials" onclick="switchPage('financials')">
+                <i class="fa-solid fa-coins"></i> Financials
+                <span class="badge">18</span>
+            </a>
+            <a class="nav-link" data-page="audit" onclick="switchPage('audit')">
+                <i class="fa-solid fa-clipboard-list"></i> Audit Logs
+                <span class="badge">12</span>
+            </a>
+            <a class="nav-link" data-page="settings" onclick="switchPage('settings')">
+                <i class="fa-solid fa-sliders"></i> System Settings
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <div class="sidebar-footer">
+            <div style="display: flex; align-items: center; gap: 14px; padding: 11px 16px; border-radius: 12px; background: var(--bg-color); color: #fff; margin-bottom: 12px;">
+                <i class="fa-solid fa-circle-user" style="width: 20px; font-size: 1.5rem; text-align: center;"></i>
+                <div style="display: flex; flex-direction: column; overflow: hidden;">
+                    <span id="sidebarName" style="font-size: 0.9rem; font-weight: 600; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></span>
+                    <span id="sidebarEmail" style="font-size: 0.75rem; font-weight: 400; opacity: 0.8; word-break: break-all;"></span>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="handleLogout()">
+                <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="main-header">
+            <div style="display:flex;align-items:center;gap:14px;">
+                <button class="hamburger-toggle" onclick="toggleSidebar(true)" aria-label="Toggle sidebar">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="greeting">
+                    Hello, <span id="userName">Admin</span>
+                    <span class="admin-tag">Admin</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="notification" onclick="switchPage('audit')">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ============================================================
+        PAGE 1: DASHBOARD
+        ============================================================ -->
+        <section class="content-page active" id="page-dashboard">
+            <h2 class="page-title">Admin Dashboard</h2>
+
+            <!-- Row 1: Stats -->
+            <div class="row">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-users"></i></span>
+                        <span class="number">1,284</span>
+                        <span class="label">Total Users</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-box"></i></span>
+                        <span class="number">3,421</span>
+                        <span class="label">Total Shipments</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-dollar-sign"></i></span>
+                        <span class="number">$847K</span>
+                        <span class="label">Revenue (YTD)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-server"></i></span>
+                        <span class="number">99.9%</span>
+                        <span class="label">System Uptime</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Charts -->
+            <div class="row">
+                <div class="chart-grid">
+                    <div class="chart-card">
+                        <h4>Revenue vs. Costs</h4>
+                        <div class="chart-container">
+                            <canvas id="revenueCostChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h4>User Acquisition</h4>
+                        <div class="chart-container">
+                            <canvas id="acquisitionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3: Recent System Activity -->
+            <div class="row">
+                <div class="table-wrapper">
+                    <h4 style="margin-bottom:12px;color:var(--bg-color);font-size:1rem;">Recent System Activity</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User / Admin</th>
+                                <th>Action</th>
+                                <th>Target</th>
+                                <th>Status</th>
+                                <th>Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Sarah Chen</strong></td>
+                                <td>User Role Change</td>
+                                <td>maria@latinlogistics.com</td>
+                                <td><span class="status-badge success">Success</span></td>
+                                <td>May 19, 2026 09:32</td>
+                            </tr>
+                            <tr>
+                                <td><strong>System</strong></td>
+                                <td>Backup Completed</td>
+                                <td>Database</td>
+                                <td><span class="status-badge success">Success</span></td>
+                                <td>May 19, 2026 02:00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Admin</strong></td>
+                                <td>Login Attempt</td>
+                                <td>admin@stackly.com</td>
+                                <td><span class="status-badge failed">Failed</span></td>
+                                <td>May 18, 2026 22:40</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Priya Patel</strong></td>
+                                <td>New User Registration</td>
+                                <td>carlos@mexicofreight.com</td>
+                                <td><span class="status-badge success">Success</span></td>
+                                <td>May 18, 2026 16:20</td>
+                            </tr>
+                            <tr>
+                                <td><strong>System</strong></td>
+                                <td>Security Patch Applied</td>
+                                <td>Firewall</td>
+                                <td><span class="status-badge success">Success</span></td>
+                                <td>May 18, 2026 11:55</td>
+                            </tr>
+                            <tr>
+                                <td><strong>James Okafor</strong></td>
+                                <td>Invoice Generated</td>
+                                <td>INV-0044</td>
+                                <td><span class="status-badge success">Success</span></td>
+                                <td>May 17, 2026 14:30</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Admin</strong></td>
+                                <td>User Account Suspended</td>
+                                <td>maria@latinlogistics.com</td>
+                                <td><span class="status-badge success">Success</span></td>
+                                <td>May 17, 2026 09:10</td>
+                            </tr>
+                            <tr>
+                                <td><strong>System</strong></td>
+                                <td>Error Detected</td>
+                                <td>API Gateway</td>
+                                <td><span class="status-badge failed">Failed</span></td>
+                                <td>May 16, 2026 20:45</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Emma Watson</strong></td>
+                                <td>Report Generated</td>
+                                <td>Monthly Analytics</td>
+                                <td><span class="status-badge success">Success</span></td>
+                                <td>May 16, 2026 12:00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>System</strong></td>
+                                <td>Scale Up Complete</td>
+                                <td>Kubernetes Cluster</td>
+                                <td><span class="status-badge success">Success</span></td>
+                                <td>May 15, 2026 08:30</td>
+                            </tr>
+                            <tr>
+                                <td><strong>David Kim</strong></td>
+                                <td>User Role Change</td>
+                                <td>hiro@tokyoshipping.com</td>
+                                <td><span class="status-badge success">Success</span></td>
+                                <td>May 14, 2026 17:15</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Admin</strong></td>
+                                <td>Maintenance Mode</td>
+                                <td>Server Update</td>
+                                <td><span class="status-badge success">Success</span></td>
+                                <td>May 14, 2026 10:00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pagination-controls">
+                        <div class="info">Showing 1-12 of 48 recent activities</div>
+                        <div class="pages">
+                            <span class="active">1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PAGE 2: USER MANAGEMENT
+        ============================================================ -->
+        <section class="content-page" id="page-users">
+            <h2 class="page-title">User Management</h2>
+
+            <!-- Row 1: Stats -->
+            <div class="row">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-users"></i></span>
+                        <span class="number">1,284</span>
+                        <span class="label">Total Users</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-user-check" style="color:#2EA043;"></i></span>
+                        <span class="number">1,142</span>
+                        <span class="label">Active</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-user-clock" style="color:var(--accent-color);"></i></span>
+                        <span class="number">86</span>
+                        <span class="label">Pending Verification</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-user-slash" style="color:#d1453b;"></i></span>
+                        <span class="number">56</span>
+                        <span class="label">Suspended</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Search & Filter -->
+            <div class="row">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search by name, email, or company..." />
+                    <select style="padding:9px 14px;border:1px solid rgba(59,84,65,0.08);border-radius:10px;font-family:var(--font-body);font-size:0.85rem;background:var(--bento-light);outline:none;min-width:140px;">
+                        <option value="">All Roles</option>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                    </select>
+                    <button class="btn-search" onclick="window.location.href='404.html'"><i class="fa-solid fa-search"></i> Search</button>
+                </div>
+            </div>
+
+            <!-- Row 3: Users Table -->
+            <div class="row">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Company</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Joined</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Sarah Chen</strong></td>
+                                <td>sarah@techcorp.com</td>
+                                <td>TechCorp Inc.</td>
+                                <td><span style="color:var(--accent-color);font-weight:600;">Admin</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>Jan 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Michael Torres</strong></td>
+                                <td>michael@globalretail.com</td>
+                                <td>GlobalRetail</td>
+                                <td>User</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>Feb 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Priya Patel</strong></td>
+                                <td>priya@logistics.io</td>
+                                <td>Logistics.io</td>
+                                <td><span style="color:var(--accent-color);font-weight:600;">Admin</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>Jan 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>James Okafor</strong></td>
+                                <td>james@globalfreight.com</td>
+                                <td>Global Freight</td>
+                                <td>User</td>
+                                <td><span class="status-badge inactive">Inactive</span></td>
+                                <td>Mar 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Emma Watson</strong></td>
+                                <td>emma@shipfast.com</td>
+                                <td>ShipFast Logistics</td>
+                                <td>User</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>Apr 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>David Kim</strong></td>
+                                <td>david@korealogistics.com</td>
+                                <td>Korea Logistics</td>
+                                <td>User</td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                                <td>Apr 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lisa Wang</strong></td>
+                                <td>lisa@asiashipping.com</td>
+                                <td>Asia Shipping</td>
+                                <td>User</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>Mar 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Robert Brown</strong></td>
+                                <td>robert@eurofreight.com</td>
+                                <td>EuroFreight</td>
+                                <td>User</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>Feb 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Maria Garcia</strong></td>
+                                <td>maria@latinlogistics.com</td>
+                                <td>Latin Logistics</td>
+                                <td>User</td>
+                                <td><span class="status-badge suspended">Suspended</span></td>
+                                <td>Jan 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Alex Johnson</strong></td>
+                                <td>alex@northshipping.com</td>
+                                <td>North Shipping</td>
+                                <td>User</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>May 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sophie Martin</strong></td>
+                                <td>sophie@parisfreight.com</td>
+                                <td>Paris Freight</td>
+                                <td>User</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>May 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Kevin Park</strong></td>
+                                <td>kevin@seoulshipping.com</td>
+                                <td>Seoul Shipping</td>
+                                <td>User</td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                                <td>May 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ahmed Hassan</strong></td>
+                                <td>ahmed@dubaifreight.com</td>
+                                <td>Dubai Freight</td>
+                                <td>User</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>Apr 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Olga Petrova</strong></td>
+                                <td>olga@moscowlogistics.com</td>
+                                <td>Moscow Logistics</td>
+                                <td>User</td>
+                                <td><span class="status-badge inactive">Inactive</span></td>
+                                <td>Mar 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hiro Tanaka</strong></td>
+                                <td>hiro@tokyoshipping.com</td>
+                                <td>Tokyo Shipping</td>
+                                <td><span style="color:var(--accent-color);font-weight:600;">Admin</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>Feb 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Carlos Rivera</strong></td>
+                                <td>carlos@mexicofreight.com</td>
+                                <td>Mexico Freight</td>
+                                <td>User</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>May 2026</td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Edit</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pagination-controls">
+                        <div class="info">Showing 1-16 of 1,284 users</div>
+                        <div class="pages">
+                            <span class="active">1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                            <span>…</span>
+                            <span>81</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PAGE 3: FLEET & LOGISTICS
+        ============================================================ -->
+        <section class="content-page" id="page-fleet">
+            <h2 class="page-title">Fleet & Logistics Oversight</h2>
+
+            <!-- Row 1: Stats -->
+            <div class="row">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-truck"></i></span>
+                        <span class="number">342</span>
+                        <span class="label">Total Deliveries</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-clock" style="color:#2EA043;"></i></span>
+                        <span class="number">94.2%</span>
+                        <span class="label">On-Time Rate</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-users" style="color:var(--accent-color);"></i></span>
+                        <span class="number">18</span>
+                        <span class="label">Active Drivers</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-car" style="color:#3B5441;"></i></span>
+                        <span class="number">24</span>
+                        <span class="label">Available Vehicles</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Search -->
+            <div class="row">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search by carrier, driver, or route..." />
+                    <select style="padding:9px 14px;border:1px solid rgba(59,84,65,0.08);border-radius:10px;font-family:var(--font-body);font-size:0.85rem;background:var(--bento-light);outline:none;min-width:140px;">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="maintenance">Maintenance</option>
+                    </select>
+                    <button class="btn-search" onclick="window.location.href='404.html'"><i class="fa-solid fa-search"></i> Search</button>
+                </div>
+            </div>
+
+            <!-- Row 3: Fleet Table -->
+            <div class="row">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Carrier / Driver</th>
+                                <th>Vehicle ID</th>
+                                <th>Route</th>
+                                <th>Shipments</th>
+                                <th>On-Time %</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>TransGlobal</strong></td>
+                                <td>TRK-421</td>
+                                <td>NYC → LON</td>
+                                <td>45</td>
+                                <td><span style="color:#2EA043;font-weight:600;">98.7%</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Oceanic Express</strong></td>
+                                <td>OCN-112</td>
+                                <td>SIN → TYO</td>
+                                <td>38</td>
+                                <td><span style="color:#2EA043;font-weight:600;">96.2%</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Desert Freight</strong></td>
+                                <td>DSR-783</td>
+                                <td>LON → DXB</td>
+                                <td>32</td>
+                                <td><span style="color:#F9A03F;font-weight:600;">92.5%</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>CoastLine Shipping</strong></td>
+                                <td>CLN-909</td>
+                                <td>NYC → LAX</td>
+                                <td>28</td>
+                                <td><span style="color:#2EA043;font-weight:600;">99.2%</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Asian Connect</strong></td>
+                                <td>ASC-456</td>
+                                <td>TYO → SIN</td>
+                                <td>24</td>
+                                <td><span style="color:#2EA043;font-weight:600;">97.4%</span></td>
+                                <td><span class="status-badge inactive">Inactive</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gulf Link</strong></td>
+                                <td>GFL-234</td>
+                                <td>DXB → NYC</td>
+                                <td>20</td>
+                                <td><span style="color:#F9A03F;font-weight:600;">91.8%</span></td>
+                                <td><span class="status-badge pending">Maintenance</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Euro Freight</strong></td>
+                                <td>EUR-678</td>
+                                <td>FRA → SIN</td>
+                                <td>18</td>
+                                <td><span style="color:#2EA043;font-weight:600;">95.6%</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>India Pacific</strong></td>
+                                <td>IND-321</td>
+                                <td>MUM → DXB</td>
+                                <td>15</td>
+                                <td><span style="color:#2EA043;font-weight:600;">98.1%</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Northern Logistics</strong></td>
+                                <td>NRT-567</td>
+                                <td>YTO → LON</td>
+                                <td>12</td>
+                                <td><span style="color:#2EA043;font-weight:600;">97.8%</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Southern Cross</strong></td>
+                                <td>SCR-890</td>
+                                <td>SYD → SIN</td>
+                                <td>10</td>
+                                <td><span style="color:#F9A03F;font-weight:600;">93.4%</span></td>
+                                <td><span class="status-badge inactive">Inactive</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Shanghai Express</strong></td>
+                                <td>SHX-111</td>
+                                <td>SHA → TYO</td>
+                                <td>22</td>
+                                <td><span style="color:#2EA043;font-weight:600;">97.0%</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Paris Logistics</strong></td>
+                                <td>PAR-444</td>
+                                <td>PAR → NYC</td>
+                                <td>14</td>
+                                <td><span style="color:#2EA043;font-weight:600;">96.5%</span></td>
+                                <td><span class="status-badge active">Active</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pagination-controls">
+                        <div class="info">Showing 1-12 of 24 carriers</div>
+                        <div class="pages">
+                            <span class="active">1</span>
+                            <span>2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PAGE 4: BUSINESS REPORTS
+        ============================================================ -->
+        <section class="content-page" id="page-reports">
+            <h2 class="page-title">Business Reports</h2>
+
+            <!-- Row 1: Key Metrics -->
+            <div class="row">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-arrow-up" style="color:#2EA043;"></i></span>
+                        <span class="number">$847K</span>
+                        <span class="label">Total Revenue</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-arrow-down" style="color:#d1453b;"></i></span>
+                        <span class="number">$623K</span>
+                        <span class="label">Operating Costs</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-coins" style="color:var(--accent-color);"></i></span>
+                        <span class="number">$224K</span>
+                        <span class="label">Net Profit</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-percent" style="color:#2EA043;"></i></span>
+                        <span class="number">+24.5%</span>
+                        <span class="label">YoY Growth</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Charts -->
+            <div class="row">
+                <div class="chart-grid">
+                    <div class="chart-card">
+                        <h4>Monthly Revenue & Profit</h4>
+                        <div class="chart-container">
+                            <canvas id="profitChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h4>Category Performance</h4>
+                        <div class="chart-container">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3: Top Performing Routes -->
+            <div class="row">
+                <div class="table-wrapper">
+                    <h4 style="margin-bottom:12px;color:var(--bg-color);font-size:1rem;">Top 5 Performing Routes</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Route</th>
+                                <th>Shipments</th>
+                                <th>Revenue</th>
+                                <th>Avg. Transit Days</th>
+                                <th>Success Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>New York → London</strong></td>
+                                <td>45</td>
+                                <td>$128,400</td>
+                                <td>2.1</td>
+                                <td><span style="color:#2EA043;font-weight:600;">98.8%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Singapore → Tokyo</strong></td>
+                                <td>38</td>
+                                <td>$96,720</td>
+                                <td>2.8</td>
+                                <td><span style="color:#2EA043;font-weight:600;">96.2%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>London → Dubai</strong></td>
+                                <td>32</td>
+                                <td>$84,480</td>
+                                <td>3.2</td>
+                                <td><span style="color:#F9A03F;font-weight:600;">92.5%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>New York → Los Angeles</strong></td>
+                                <td>28</td>
+                                <td>$64,120</td>
+                                <td>1.5</td>
+                                <td><span style="color:#2EA043;font-weight:600;">99.2%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tokyo → Singapore</strong></td>
+                                <td>24</td>
+                                <td>$52,320</td>
+                                <td>2.6</td>
+                                <td><span style="color:#2EA043;font-weight:600;">97.4%</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PAGE 5: FINANCIALS
+        ============================================================ -->
+        <section class="content-page" id="page-financials">
+            <h2 class="page-title">Financials</h2>
+
+            <!-- Row 1: Summary -->
+            <div class="row">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-circle-check" style="color:#2EA043;"></i></span>
+                        <span class="number">$62,820</span>
+                        <span class="label">Total Paid</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-clock" style="color:var(--accent-color);"></i></span>
+                        <span class="number">$18,240</span>
+                        <span class="label">Pending</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-circle-exclamation" style="color:#d1453b;"></i></span>
+                        <span class="number">$4,340</span>
+                        <span class="label">Overdue</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-file-invoice"></i></span>
+                        <span class="number">246</span>
+                        <span class="label">Total Invoices</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Invoices Table -->
+            <div class="row">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Invoice #</th>
+                                <th>Client</th>
+                                <th>Due Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>INV-0042</strong></td>
+                                <td>Sarah Chen</td>
+                                <td>May 15, 2026</td>
+                                <td>$840.00</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0041</strong></td>
+                                <td>Michael Torres</td>
+                                <td>May 10, 2026</td>
+                                <td>$1,200.00</td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0040</strong></td>
+                                <td>Priya Patel</td>
+                                <td>May 5, 2026</td>
+                                <td>$2,340.00</td>
+                                <td><span class="status-badge overdue">Overdue</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0039</strong></td>
+                                <td>James Okafor</td>
+                                <td>Apr 28, 2026</td>
+                                <td>$650.00</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0038</strong></td>
+                                <td>Emma Watson</td>
+                                <td>Apr 20, 2026</td>
+                                <td>$890.00</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0037</strong></td>
+                                <td>David Kim</td>
+                                <td>Apr 15, 2026</td>
+                                <td>$1,540.00</td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0036</strong></td>
+                                <td>Lisa Wang</td>
+                                <td>Apr 10, 2026</td>
+                                <td>$420.00</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0035</strong></td>
+                                <td>Robert Brown</td>
+                                <td>Apr 5, 2026</td>
+                                <td>$760.00</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0034</strong></td>
+                                <td>Maria Garcia</td>
+                                <td>Mar 28, 2026</td>
+                                <td>$1,100.00</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0033</strong></td>
+                                <td>Alex Johnson</td>
+                                <td>Mar 20, 2026</td>
+                                <td>$530.00</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0032</strong></td>
+                                <td>Sophie Martin</td>
+                                <td>Mar 15, 2026</td>
+                                <td>$2,100.00</td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0031</strong></td>
+                                <td>Kevin Park</td>
+                                <td>Mar 10, 2026</td>
+                                <td>$450.00</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0043</strong></td>
+                                <td>Ahmed Hassan</td>
+                                <td>May 18, 2026</td>
+                                <td>$920.00</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0044</strong></td>
+                                <td>Olga Petrova</td>
+                                <td>May 19, 2026</td>
+                                <td>$1,350.00</td>
+                                <td><span class="status-badge overdue">Overdue</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0045</strong></td>
+                                <td>Hiro Tanaka</td>
+                                <td>May 20, 2026</td>
+                                <td>$675.00</td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>INV-0046</strong></td>
+                                <td>Carlos Rivera</td>
+                                <td>May 21, 2026</td>
+                                <td>$1,890.00</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">View</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pagination-controls">
+                        <div class="info">Showing 1-16 of 246 invoices</div>
+                        <div class="pages">
+                            <span class="active">1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                            <span>…</span>
+                            <span>16</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PAGE 6: AUDIT LOGS
+        ============================================================ -->
+        <section class="content-page" id="page-audit">
+            <h2 class="page-title">Audit Logs</h2>
+
+            <!-- Row 1: Stats -->
+            <div class="row">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-list"></i></span>
+                        <span class="number">1,247</span>
+                        <span class="label">Total Events</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-triangle-exclamation" style="color:#d1453b;"></i></span>
+                        <span class="number">8</span>
+                        <span class="label">Critical Alerts</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-calendar-day" style="color:var(--accent-color);"></i></span>
+                        <span class="number">43</span>
+                        <span class="label">Today's Events</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon"><i class="fa-solid fa-user-lock" style="color:#3B5441;"></i></span>
+                        <span class="number">12</span>
+                        <span class="label">Active Sessions</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Search -->
+            <div class="row">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search by admin, user, event type..." />
+                    <select style="padding:9px 14px;border:1px solid rgba(59,84,65,0.08);border-radius:10px;font-family:var(--font-body);font-size:0.85rem;background:var(--bento-light);outline:none;min-width:140px;">
+                        <option value="">All Status</option>
+                        <option value="success">Success</option>
+                        <option value="failed">Failed</option>
+                        <option value="warning">Warning</option>
+                    </select>
+                    <button class="btn-search" onclick="window.location.href='404.html'"><i class="fa-solid fa-search"></i> Search</button>
+                </div>
+            </div>
+
+            <!-- Row 3: Audit Log Table -->
+            <div class="row">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Admin</th>
+                                <th>Event Type</th>
+                                <th>Target</th>
+                                <th>IP Address</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>May 19, 2026 09:32</td>
+                                <td>Sarah Chen</td>
+                                <td>User Role Change</td>
+                                <td>maria@latinlogistics.com</td>
+                                <td>192.168.1.1</td>
+                                <td><span class="status-badge success">Success</span></td>
+                            </tr>
+                            <tr>
+                                <td>May 19, 2026 08:15</td>
+                                <td>System</td>
+                                <td>Backup Completed</td>
+                                <td>Database</td>
+                                <td>127.0.0.1</td>
+                                <td><span class="status-badge success">Success</span></td>
+                            </tr>
+                            <tr>
+                                <td>May 18, 2026 22:40</td>
+                                <td>Admin</td>
+                                <td>Login Attempt</td>
+                                <td>admin@stackly.com</td>
+                                <td>203.0.113.45</td>
+                                <td><span class="status-badge failed">Failed</span></td>
+                            </tr>
+                            <tr>
+                                <td>May 18, 2026 16:20</td>
+                                <td>Priya Patel</td>
+                                <td>New User Registration</td>
+                                <td>carlos@mexicofreight.com</td>
+                                <td>192.168.1.2</td>
+                                <td><span class="status-badge success">Success</span></td>
+                            </tr>
+                            <tr>
+                                <td>May 18, 2026 11:55</td>
+                                <td>System</td>
+                                <td>Security Patch Applied</td>
+                                <td>Firewall</td>
+                                <td>127.0.0.1</td>
+                                <td><span class="status-badge success">Success</span></td>
+                            </tr>
+                            <tr>
+                                <td>May 17, 2026 14:30</td>
+                                <td>James Okafor</td>
+                                <td>Invoice Generated</td>
+                                <td>INV-0044</td>
+                                <td>192.168.1.3</td>
+                                <td><span class="status-badge success">Success</span></td>
+                            </tr>
+                            <tr>
+                                <td>May 17, 2026 09:10</td>
+                                <td>Admin</td>
+                                <td>User Account Suspended</td>
+                                <td>maria@latinlogistics.com</td>
+                                <td>192.168.1.1</td>
+                                <td><span class="status-badge success">Success</span></td>
+                            </tr>
+                            <tr>
+                                <td>May 16, 2026 20:45</td>
+                                <td>System</td>
+                                <td>Error Detected</td>
+                                <td>API Gateway</td>
+                                <td>127.0.0.1</td>
+                                <td><span class="status-badge failed">Failed</span></td>
+                            </tr>
+                            <tr>
+                                <td>May 16, 2026 12:00</td>
+                                <td>Emma Watson</td>
+                                <td>Report Generated</td>
+                                <td>Monthly Analytics</td>
+                                <td>192.168.1.4</td>
+                                <td><span class="status-badge success">Success</span></td>
+                            </tr>
+                            <tr>
+                                <td>May 15, 2026 08:30</td>
+                                <td>System</td>
+                                <td>Scale Up Complete</td>
+                                <td>Kubernetes Cluster</td>
+                                <td>127.0.0.1</td>
+                                <td><span class="status-badge success">Success</span></td>
+                            </tr>
+                            <tr>
+                                <td>May 14, 2026 17:15</td>
+                                <td>David Kim</td>
+                                <td>User Role Change</td>
+                                <td>hiro@tokyoshipping.com</td>
+                                <td>192.168.1.5</td>
+                                <td><span class="status-badge success">Success</span></td>
+                            </tr>
+                            <tr>
+                                <td>May 14, 2026 10:00</td>
+                                <td>Admin</td>
+                                <td>Maintenance Mode</td>
+                                <td>Server Update</td>
+                                <td>192.168.1.1</td>
+                                <td><span class="status-badge success">Success</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pagination-controls">
+                        <div class="info">Showing 1-12 of 1,247 events</div>
+                        <div class="pages">
+                            <span class="active">1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                            <span>…</span>
+                            <span>104</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PAGE 7: SYSTEM SETTINGS
+        ============================================================ -->
+        <section class="content-page" id="page-settings">
+            <h2 class="page-title">System Settings</h2>
+
+            <!-- Row 1: Profile Info -->
+            <div class="row">
+                <div class="profile-card">
+                    <div class="avatar" id="avatarInitial">A</div>
+                    <div class="info">
+                        <h3 id="profileName">Admin</h3>
+                        <div class="email" id="profileEmail">admin@stackly.com</div>
+                        <div class="field">
+                            <div class="item">
+                                <div class="label">Role</div>
+                                <div class="value"><span style="color:var(--accent-color);font-weight:600;">Administrator</span></div>
+                            </div>
+                            <div class="item">
+                                <div class="label">Last Login</div>
+                                <div class="value">May 19, 2026 09:32</div>
+                            </div>
+                            <div class="item">
+                                <div class="label">Status</div>
+                                <div class="value"><span class="status-badge active">Active</span></div>
+                            </div>
+                            <div class="item">
+                                <div class="label">2FA</div>
+                                <div class="value"><span class="status-badge active">Enabled</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Security Settings -->
+            <div class="row">
+                <div style="background:#fff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.02);">
+                    <h4 style="margin-bottom:16px;color:var(--bg-color);font-size:1rem;">Security & Access</h4>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="twoFactor" checked />
+                        <label for="twoFactor" class="slider"></label>
+                        <span class="label">Two-Factor Authentication (2FA)</span>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="sessionTimeout" checked />
+                        <label for="sessionTimeout" class="slider"></label>
+                        <span class="label">Session Timeout (15 min inactivity)</span>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="ipWhitelist" />
+                        <label for="ipWhitelist" class="slider"></label>
+                        <span class="label">IP Whitelist Enforcement</span>
+                    </div>
+                    <div style="margin-top:16px;">
+                        <button class="btn-save" onclick="window.location.href='404.html'">Update Security Settings</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3: System Configuration -->
+            <div class="row">
+                <div style="background:#fff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.02);">
+                    <h4 style="margin-bottom:16px;color:var(--bg-color);font-size:1rem;">System Configuration</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Currency</label>
+                            <select>
+                                <option value="USD" selected>USD ($)</option>
+                                <option value="EUR">EUR (€)</option>
+                                <option value="GBP">GBP (£)</option>
+                                <option value="SGD">SGD (S$)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Timezone</label>
+                            <select>
+                                <option value="EST">EST (UTC -5)</option>
+                                <option value="GMT" selected>GMT (UTC +0)</option>
+                                <option value="SGT">SGT (UTC +8)</option>
+                                <option value="JST">JST (UTC +9)</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label>Tax Rate (%)</label>
+                            <input type="number" value="18.5" step="0.1" />
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label>Default Shipping Cost (per kg)</label>
+                            <input type="number" value="12.50" step="0.01" />
+                        </div>
+                    </div>
+                    <button class="btn-save" onclick="window.location.href='404.html'">Save Configuration</button>
+                </div>
+            </div>
+
+            <!-- Row 4: API Keys & Integrations -->
+            <div class="row">
+                <div style="background:#fff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.02);">
+                    <h4 style="margin-bottom:16px;color:var(--bg-color);font-size:1rem;">API Keys & Integrations</h4>
+                    <div class="table-wrapper" style="box-shadow:none;padding:0;border:none;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Integration</th>
+                                    <th>API Key</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Stripe</strong></td>
+                                    <td>sk_live_••••••••••••••••••••••••</td>
+                                    <td><span class="status-badge active">Active</span></td>
+                                    <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Rotate</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Twilio SMS</strong></td>
+                                    <td>AC••••••••••••••••••••••••</td>
+                                    <td><span class="status-badge active">Active</span></td>
+                                    <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Rotate</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Google Maps</strong></td>
+                                    <td>AIza••••••••••••••••••••••••</td>
+                                    <td><span class="status-badge active">Active</span></td>
+                                    <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Rotate</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Slack Webhook</strong></td>
+                                    <td>https://hooks.slack.com/••••••••</td>
+                                    <td><span class="status-badge inactive">Inactive</span></td>
+                                    <td><span class="action-link" style="color:var(--accent-color);font-weight:600;font-size:0.75rem;cursor:default;">Configure</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="margin-top:16px;">
+                        <button class="btn-save" onclick="window.location.href='404.html'">Generate New API Key</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // AUTHENTICATION CHECK
+        // ============================================================
+        (function checkAuth() {
+            const userData = localStorage.getItem('stackly_user');
+            if (!userData) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                const user = JSON.parse(userData);
+                if (!user.loggedIn || user.role !== 'admin') {
+                    if (user.role === 'user') {
+                        window.location.href = 'user.html';
+                    } else {
+                        window.location.href = 'login.html';
+                    }
+                    return;
+                }
+
+                const displayName = user.name || 'Admin';
+                document.getElementById('userName').textContent = displayName;
+                document.getElementById('profileName').textContent = displayName;
+                document.getElementById('profileEmail').textContent = user.email || 'admin@stackly.com';
+                const sidebarEmailEl = document.getElementById('sidebarEmail');
+                if (sidebarEmailEl) sidebarEmailEl.textContent = user.email || 'admin@stackly.com';
+                const sidebarNameEl = document.getElementById('sidebarName');
+                if (sidebarNameEl) sidebarNameEl.textContent = displayName;
+                document.getElementById('avatarInitial').textContent = displayName.charAt(0).toUpperCase();
+
+            } catch (e) {
+                window.location.href = 'login.html';
+            }
+        })();
+
+        // ============================================================
+        // PAGE SWITCHING
+        // ============================================================
+        function switchPage(pageId) {
+            document.querySelectorAll('.content-page').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            const target = document.getElementById('page-' + pageId);
+            if (target) {
+                target.classList.add('active');
+            }
+
+            document.querySelectorAll('.nav-link').forEach(el => {
+                el.classList.remove('active');
+                if (el.dataset.page === pageId) {
+                    el.classList.add('active');
+                }
+            });
+
+            if (window.innerWidth <= 768) {
+                toggleSidebar(false);
+            }
+
+            if (pageId === 'reports') {
+                setTimeout(initReportsCharts, 300);
+            }
+        }
+
+        // ============================================================
+        // SIDEBAR TOGGLE
+        // ============================================================
+        function toggleSidebar(open) {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            if (open) {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('sidebar').classList.remove('open');
+                document.getElementById('sidebarOverlay').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ============================================================
+        // LOGOUT
+        // ============================================================
+        function handleLogout() {
+            const userData = localStorage.getItem('stackly_user');
+            if (userData) {
+                const user = JSON.parse(userData);
+                user.loggedIn = false;
+                localStorage.setItem('stackly_user', JSON.stringify(user));
+            }
+            window.location.href = 'login.html';
+        }
+
+        // ============================================================
+        // CHARTS
+        // ============================================================
+        function initDashboardCharts() {
+            if (document.getElementById('revenueCostChart')) {
+                const ctx1 = document.getElementById('revenueCostChart').getContext('2d');
+                new Chart(ctx1, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Revenue',
+                            data: [32000, 38000, 42000, 48000, 55000, 62000],
+                            borderColor: '#3B5441',
+                            backgroundColor: 'rgba(59, 84, 65, 0.05)',
+                            fill: true,
+                            tension: 0.4,
+                            borderWidth: 2,
+                            pointBackgroundColor: '#3B5441',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4
+                        }, {
+                            label: 'Costs',
+                            data: [24000, 28000, 31000, 34000, 40000, 45000],
+                            borderColor: '#F9A03F',
+                            backgroundColor: 'rgba(249, 160, 63, 0.05)',
+                            fill: true,
+                            tension: 0.4,
+                            borderWidth: 2,
+                            pointBackgroundColor: '#F9A03F',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    usePointStyle: true,
+                                    pointStyle: 'circle',
+                                    padding: 20,
+                                    font: {
+                                        size: 11,
+                                        family: 'Montserrat'
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(59, 84, 65, 0.06)'
+                                },
+                                ticks: {
+                                    callback: function(value) {
+                                        return '$' + value.toLocaleString();
+                                    }
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+
+                const ctx2 = document.getElementById('acquisitionChart').getContext('2d');
+                new Chart(ctx2, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'New Users',
+                            data: [120, 150, 180, 160, 190, 210],
+                            backgroundColor: '#3B5441',
+                            borderRadius: 6,
+                            borderSkipped: false,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(59, 84, 65, 0.06)'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        function initReportsCharts() {
+            if (document.getElementById('profitChart')) {
+                const ctx1 = document.getElementById('profitChart').getContext('2d');
+                new Chart(ctx1, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Revenue',
+                            data: [32000, 38000, 42000, 48000, 55000, 62000],
+                            borderColor: '#3B5441',
+                            backgroundColor: 'rgba(59, 84, 65, 0.05)',
+                            fill: true,
+                            tension: 0.4,
+                            borderWidth: 2,
+                            pointBackgroundColor: '#3B5441',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4
+                        }, {
+                            label: 'Profit',
+                            data: [8000, 10000, 11000, 14000, 15000, 17000],
+                            borderColor: '#F9A03F',
+                            backgroundColor: 'rgba(249, 160, 63, 0.05)',
+                            fill: true,
+                            tension: 0.4,
+                            borderWidth: 2,
+                            pointBackgroundColor: '#F9A03F',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    usePointStyle: true,
+                                    pointStyle: 'circle',
+                                    padding: 20,
+                                    font: {
+                                        size: 11,
+                                        family: 'Montserrat'
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(59, 84, 65, 0.06)'
+                                },
+                                ticks: {
+                                    callback: function(value) {
+                                        return '$' + value.toLocaleString();
+                                    }
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+
+                const ctx2 = document.getElementById('categoryChart').getContext('2d');
+                new Chart(ctx2, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Air Freight', 'Ocean Freight', 'Road Logistics', 'Warehousing'],
+                        datasets: [{
+                            data: [320, 180, 110, 75],
+                            backgroundColor: ['#3B5441', '#F9A03F', '#2EA043', '#7a8a7e'],
+                            borderWidth: 0,
+                            hoverOffset: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    padding: 16,
+                                    usePointStyle: true,
+                                    pointStyle: 'circle',
+                                    font: {
+                                        size: 11,
+                                        family: 'Montserrat'
+                                    }
+                                }
+                            }
+                        },
+                        cutout: '55%'
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(initDashboardCharts, 500);
+        });
+
+        setTimeout(function() {
+            if (document.getElementById('page-reports').classList.contains('active')) {
+                setTimeout(initReportsCharts, 600);
+            }
+        }, 800);
+
+        // ============================================================
+        // BACKGROUND NET CANVAS
+        // ============================================================
+        const canvas = document.getElementById('bg-net');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            const particles = [];
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 2 + 0.5,
+                    vx: (Math.random() - 0.5) * 0.2,
+                    vy: (Math.random() - 0.5) * 0.2,
+                    alpha: Math.random() * 0.4 + 0.1
+                });
+            }
+
+            function animateNet() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < -10) p.x = width + 10;
+                    if (p.x > width + 10) p.x = -10;
+                    if (p.y < -10) p.y = height + 10;
+                    if (p.y > height + 10) p.y = -10;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(59, 84, 65, ${p.alpha})`;
+                    ctx.fill();
+                });
+                requestAnimationFrame(animateNet);
+            }
+            animateNet();
+        }
+
+        // Redirects for Notification and Pagination
+        document.querySelectorAll('.notification').forEach(el => {
+            el.setAttribute('onclick', "window.location.href='404.html'");
+        });
+        document.querySelectorAll('.pagination-controls .pages span:not(.active)').forEach(el => {
+            el.setAttribute('onclick', "window.location.href='404.html'");
+            el.style.cursor = 'pointer';
+        });
+    </script>
+
+</body>
+</html>

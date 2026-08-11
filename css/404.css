@@ -1,0 +1,84 @@
+/* 404 Page Specific Styles */
+.page-404-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: radial-gradient(circle at center, var(--bento-light) 0%, #cce0c6 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Floating animation elements */
+.floating-element {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(249, 160, 63, 0.1); /* Accent color transparent */
+    animation: float 10s infinite ease-in-out alternate;
+    z-index: 1;
+}
+.el-1 { width: 300px; height: 300px; top: 10%; left: 15%; animation-duration: 12s; }
+.el-2 { width: 400px; height: 400px; bottom: 5%; right: 10%; animation-duration: 15s; background: rgba(59, 84, 65, 0.05); }
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-30px) rotate(10deg); }
+}
+
+.content-404 {
+    text-align: center;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 60px 40px;
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    width: 100%;
+}
+
+.title-404 {
+    font-size: clamp(6rem, 15vw, 10rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: pulseText 3s infinite ease-in-out;
+}
+
+@keyframes pulseText {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+.subtitle-404 {
+    font-size: 2rem;
+    color: var(--bg-color);
+    margin-bottom: 15px;
+    font-family: var(--font-heading);
+}
+
+.desc-404 {
+    font-size: 1.1rem;
+    color: #5a6b5f;
+    margin-bottom: 40px;
+    font-family: var(--font-body);
+}
+
+.actions-404 {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+    .content-404 { padding: 40px 20px; }
+    .actions-404 { flex-direction: column; width: 100%; }
+    .actions-404 .btn { width: 100%; text-align: center; }
+}

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Stackly Logistics</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- About Specific CSS -->
+    <link rel="stylesheet" href="css/about.css" />
+</head>
+<body>
+
+    <!-- Background Net -->
+    <canvas id="bg-net" style="position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:-1; pointer-events:none;"></canvas>
+
+    <!-- Header -->
+    <header id="header" class="header-section">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo_trimmed.webp" alt="Stackly Logistics Logo" class="nav-logo"></a>
+            </div>
+            
+            <!-- Mobile Hamburger Toggle -->
+            <div class="hamburger-menu sticky-hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <nav class="nav-links sticky-links">
+                <div class="menu-close"><i class="fa-solid fa-xmark"></i></div>
+                <a href="index.html">HOME</a>
+                <a href="services.html">SERVICES</a>
+                <a href="about.html" class="active">ABOUT</a>
+                <a href="blog.html">BLOG</a>
+                <a href="contact.html">CONTACT</a>
+                <div class="mobile-auth-links">
+                    <a href="login.html">LOGIN</a>
+                    <a href="signup.html" class="mobile-signup-btn">SIGN UP</a>
+                </div>
+            </nav>
+            <div class="nav-actions" style="display: flex; align-items: center; gap: 20px;">
+                <a href="login.html" style="font-weight: 500; font-size: 0.95rem; color: #4A4A4A; text-transform: uppercase; letter-spacing: 1px;">Login</a>
+                <a href="signup.html" class="btn btn-nav">Signup</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    ABOUT HERO
+    ============================================================ -->
+    <section class="about-hero">
+        <img src="images/hero_luxury_1786380475025.webp" alt="" class="about-hero-bg" />
+        <div class="about-hero-content" data-aos="fade-up">
+            <span class="badge" data-aos="fade-up" data-aos-delay="100">Who We Are</span>
+            <h1 data-aos="fade-up" data-aos-delay="150">Driving <span>Excellence</span><br />in Logistics</h1>
+            <p data-aos="fade-up" data-aos-delay="200">
+                We're a global logistics partner dedicated to moving your business forward
+                with intelligence, integrity, and unmatched precision.
+            </p>
+            <div class="hero-stats-row" data-aos="fade-up" data-aos-delay="250">
+                <div class="stat">
+                    <span class="num">15+</span>
+                    <span class="label">Years of Excellence</span>
+                </div>
+                <div class="stat">
+                    <span class="num">120+</span>
+                    <span class="label">Countries Served</span>
+                </div>
+                <div class="stat">
+                    <span class="num">99.9%</span>
+                    <span class="label">On‑Time Delivery</span>
+                </div>
+                <div class="stat">
+                    <span class="num">2.3k+</span>
+                    <span class="label">Happy Clients</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    OUR STORY
+    ============================================================ -->
+    <section class="story-section">
+        <div class="story-grid">
+            <div class="story-image" data-aos="fade-right" data-aos-duration="900">
+                <img src="images/hero_logistics_1786379231105.webp" alt="Our Story" />
+            </div>
+            <div class="story-text" data-aos="fade-left" data-aos-duration="900">
+                <h2>Our <span>Story</span></h2>
+                <p>
+                    Founded in 2010, Stackly Logistics began with a simple yet ambitious vision:
+                    to transform the global supply chain through intelligent routing,
+                    cutting‑edge technology, and a relentless commitment to reliability.
+                </p>
+                <p>
+                    What started as a small freight forwarding operation in New York has
+                    grown into a worldwide network spanning 120+ countries. Today, we
+                    move everything from time‑sensitive air cargo to massive ocean
+                    shipments, all while maintaining the personal touch that defines
+                    our brand.
+                </p>
+                <p>
+                    We believe that logistics is more than moving goods — it's about
+                    moving businesses forward. Every shipment we handle is backed by
+                    our promise of transparency, speed, and care.
+                </p>
+                <div class="signature">— The Stackly Team</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    MISSION & VISION
+    ============================================================ -->
+    <section class="mission-section">
+        <h2 class="section-title" data-aos="fade-up">Mission &amp; Vision</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Guided by purpose, driven by innovation.
+        </p>
+        <div class="mission-grid">
+            <div class="mission-card">
+                <span class="icon"><i class="fa-solid fa-bullseye"></i></span>
+                <h3>Our Mission</h3>
+                <p>
+                    To deliver intelligent, reliable, and sustainable logistics solutions
+                    that empower businesses to scale globally with confidence.
+                </p>
+            </div>
+            <div class="mission-card">
+                <span class="icon"><i class="fa-solid fa-eye"></i></span>
+                <h3>Our Vision</h3>
+                <p>
+                    To become the world's most trusted logistics partner, setting new
+                    standards for efficiency, transparency, and environmental responsibility.
+                </p>
+            </div>
+            <div class="mission-card">
+                <span class="icon"><i class="fa-solid fa-handshake"></i></span>
+                <h3>Our Promise</h3>
+                <p>
+                    Every shipment, every route, every interaction — we deliver with
+                    integrity, precision, and a genuine care for your success.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    VALUES
+    ============================================================ -->
+    <section class="values-section">
+        <h2 class="section-title" data-aos="fade-up">Our Core Values</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            The principles that guide every decision we make.
+        </p>
+        <div class="values-grid">
+            <div class="value-card" data-aos="zoom-in" data-aos-delay="100">
+                <span class="icon"><i class="fa-solid fa-rocket"></i></span>
+                <h4>Innovation</h4>
+                <p>We embrace technology to constantly improve how we move and track your goods.</p>
+            </div>
+            <div class="value-card" data-aos="zoom-in" data-aos-delay="150">
+                <span class="icon"><i class="fa-solid fa-shield-halved"></i></span>
+                <h4>Integrity</h4>
+                <p>Transparency and honesty are the foundations of every relationship we build.</p>
+            </div>
+            <div class="value-card" data-aos="zoom-in" data-aos-delay="200">
+                <span class="icon"><i class="fa-solid fa-people-group"></i></span>
+                <h4>Collaboration</h4>
+                <p>We work hand‑in‑hand with our clients to create bespoke logistics strategies.</p>
+            </div>
+            <div class="value-card" data-aos="zoom-in" data-aos-delay="250">
+                <span class="icon"><i class="fa-solid fa-leaf"></i></span>
+                <h4>Sustainability</h4>
+                <p>We're committed to carbon‑neutral operations and eco‑friendly practices.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    TEAM
+    ============================================================ -->
+    <section class="team-section">
+        <h2 class="section-title" data-aos="fade-up">Meet the Team</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Passionate professionals dedicated to moving your business forward.
+        </p>
+        <div class="team-grid">
+            <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/sarah_chen.webp" alt="Sarah Chen" class="avatar" />
+                <div class="info">
+                    <h4>Sarah Chen</h4>
+                    <div class="role">CEO &amp; Co‑Founder</div>
+                    <div class="bio">15+ years in global logistics strategy. Passionate about sustainable supply.</div>
+                    <div class="social-links">
+                        <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card" data-aos="fade-up" data-aos-delay="150">
+                <img src="images/michael_torres.webp" alt="Michael Torres" class="avatar" />
+                <div class="info">
+                    <h4>Michael Torres</h4>
+                    <div class="role">Chief Operations Officer</div>
+                    <div class="bio">Former logistics director at a Fortune 500. Expert in route optimization.</div>
+                    <div class="social-links">
+                        <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="images/priya_patel.webp" alt="Priya Patel" class="avatar" />
+                <div class="info">
+                    <h4>Priya Patel</h4>
+                    <div class="role">Head of Technology</div>
+                    <div class="bio">AI and IoT specialist building the future of intelligent logistics.</div>
+                    <div class="social-links">
+                        <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card" data-aos="fade-up" data-aos-delay="250">
+                <img src="images/james_okafor.webp" alt="James Okafor" class="avatar" />
+                <div class="info">
+                    <h4>James Okafor</h4>
+                    <div class="role">VP, Global Sales</div>
+                    <div class="bio">Building bridges across continents. Client‑centric approach with a global.</div>
+                    <div class="social-links">
+                        <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    HISTORY / TIMELINE
+    ============================================================ -->
+    <section class="history-section">
+        <h2 class="section-title" data-aos="fade-up">Our Journey</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            From a bold idea to a global logistics leader.
+        </p>
+        <div class="history-timeline">
+            <!-- Removed data-aos to prevent conflict with GSAP -->
+            <div class="history-item">
+                <div class="dot"></div>
+                <div class="content">
+                    <div class="year">2010</div>
+                    <h4>Founded in New York</h4>
+                    <p>Stackly Logistics was born with a single truck and a big vision to revolutionize freight.</p>
+                </div>
+            </div>
+            <div class="history-item">
+                <div class="dot"></div>
+                <div class="content">
+                    <div class="year">2014</div>
+                    <h4>Expansion to Europe</h4>
+                    <p>Opened our London hub, establishing a strong presence across the Atlantic.</p>
+                </div>
+            </div>
+            <div class="history-item">
+                <div class="dot"></div>
+                <div class="content">
+                    <div class="year">2018</div>
+                    <h4>Tech Innovation</h4>
+                    <p>Launched our proprietary AI‑driven routing platform, cutting transit times by 30%.</p>
+                </div>
+            </div>
+            <div class="history-item">
+                <div class="dot"></div>
+                <div class="content">
+                    <div class="year">2022</div>
+                    <h4>Asia Pacific &amp; Beyond</h4>
+                    <p>Expanded into Singapore and Tokyo, reaching 120+ countries worldwide.</p>
+                </div>
+            </div>
+            <div class="history-item">
+                <div class="dot"></div>
+                <div class="content">
+                    <div class="year">2026</div>
+                    <h4>Carbon Neutral Commitment</h4>
+                    <p>Pledged to achieve net‑zero emissions by 2030 through sustainable operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    NEW SECTION: AWARDS & RECOGNITION
+    ============================================================ -->
+    <section class="awards-section">
+        <h2 class="section-title" data-aos="fade-up">Awards &amp; Recognition</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Industry recognition for our commitment to excellence.
+        </p>
+        <div class="awards-grid">
+            <div class="award-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fa-solid fa-trophy"></i>
+                <h4>Global Carrier of the Year</h4>
+                <p>2025 Logistics Excellence Awards</p>
+            </div>
+            <div class="award-card" data-aos="fade-up" data-aos-delay="150">
+                <i class="fa-solid fa-leaf"></i>
+                <h4>Green Supply Chain Leader</h4>
+                <p>2024 Eco-Transport Council</p>
+            </div>
+            <div class="award-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-microchip"></i>
+                <h4>Innovator in Tech Logistics</h4>
+                <p>2025 Tech Freight Summit</p>
+            </div>
+            <div class="award-card" data-aos="fade-up" data-aos-delay="250">
+                <i class="fa-solid fa-star"></i>
+                <h4>Top 10 Freight Forwarders</h4>
+                <p>2024 Supply Chain Magazine</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    NEW SECTION: GLOBAL REACH
+    ============================================================ -->
+    <section class="global-reach-section">
+        <h2 class="section-title" data-aos="fade-up">Our Global Reach</h2>
+        <p class="section-subtitle text-light" style="color:rgba(255,255,255,0.7) !important;" data-aos="fade-up" data-aos-delay="100">
+            Connecting continents, businesses, and people every single day.
+        </p>
+        <div class="global-reach-grid">
+            <div class="reach-stat" data-aos="zoom-in" data-aos-delay="100">
+                <h3>45+</h3>
+                <p>Global Hubs</p>
+            </div>
+            <div class="reach-stat" data-aos="zoom-in" data-aos-delay="200">
+                <h3>80k</h3>
+                <p>Monthly Shipments</p>
+            </div>
+            <div class="reach-stat" data-aos="zoom-in" data-aos-delay="300">
+                <h3>1.2M</h3>
+                <p>Tons of Cargo</p>
+            </div>
+            <div class="reach-stat" data-aos="zoom-in" data-aos-delay="400">
+                <h3>24/7</h3>
+                <p>Support Operations</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CTA SECTION
+    ============================================================ -->
+    <section class="cta-section">
+        <img src="images/hero_luxury_1786380475025.webp" alt="" class="cta-bg" />
+        <div class="cta-content" data-aos="fade-up">
+            <h2>Ready to Move Forward?</h2>
+            <p>
+                Join thousands of businesses that trust us to deliver their most
+                important shipments — on time, every time.
+            </p>
+            <a href="contact.html" class="btn btn-large btn-solid" style="border-color: #F9A03F;">Get Started</a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer id="footer" class="footer-section">
+        <img src="images/hero_logistics_1786379231105.webp" class="footer-bg" alt="Footer Background">
+        <div class="footer-overlay"></div>
+        <div class="footer-content-wrapper">
+            <div class="footer-content" data-aos="fade-up">
+                <h2>Ready to Optimize Your Logistics?</h2>
+                <p>Join thousands of businesses scaling globally with Stackly.</p>
+                <a href="contact.html" class="btn btn-large btn-solid">Get a Quote</a>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="about.html">About</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-meta">
+                    <p>&copy; 2026 Stackly Logistics. All rights reserved.</p>
+                    <div class="socials">
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Main Script for AOS and Hamburger Menu -->
+    <script src="script.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // GSAP + SCROLLTRIGGER
+            gsap.registerPlugin(ScrollTrigger);
+
+            let mm = gsap.matchMedia();
+
+            mm.add("(min-width: 769px)", () => {
+                // Timeline items fade with scroll (Now works because data-aos is removed)
+                const historyItems = gsap.utils.toArray('.history-item');
+                historyItems.forEach((item) => {
+                    gsap.from(item, {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse",
+                        },
+                        opacity: 0,
+                        x: item.querySelector('.content').getBoundingClientRect().left < window.innerWidth / 2 ? -60 : 60,
+                        duration: 0.7,
+                        ease: "power2.out"
+                    });
+                });
+
+                // Mission cards stagger
+                const missionCards = gsap.utils.toArray('.mission-card');
+                missionCards.forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse",
+                        },
+                        opacity: 0,
+                        y: 40,
+                        duration: 0.6,
+                        delay: i * 0.15,
+                        ease: "power2.out"
+                    });
+                });
+            });
+
+            // Counters for Hero Metrics
+            const heroCounters = gsap.utils.toArray('.hero-stats-row .stat .num');
+            heroCounters.forEach(counter => {
+                let text = counter.textContent.trim();
+                let match = text.match(/^([\d.]+)(.*)$/);
+                if (!match) return;
+                
+                let num = parseFloat(match[1]);
+                let suffix = match[2];
+                if (isNaN(num)) return; // Safety check
+                
+                let obj = { val: 0 };
+                gsap.to(obj, {
+                    val: num,
+                    duration: 2.5,
+                    delay: 0.5, // Wait for AOS fade-in
+                    ease: "power2.out",
+                    onUpdate: function() {
+                        let finalNum = obj.val;
+                        if (match[1].includes('.')) {
+                            finalNum = finalNum.toFixed(1);
+                        } else {
+                            finalNum = Math.floor(finalNum);
+                        }
+                        counter.textContent = finalNum + suffix;
+                    }
+                });
+            });
+
+            // Counters for Global Reach
+            const counters = gsap.utils.toArray('.reach-stat h3');
+            counters.forEach(counter => {
+                let text = counter.textContent.trim();
+                let match = text.match(/^([\d.]+)(.*)$/);
+                if (!match) return;
+                
+                let num = parseFloat(match[1]);
+                let suffix = match[2];
+                if (isNaN(num)) return; // Safety check
+                
+                let obj = { val: 0 };
+                gsap.to(obj, {
+                    val: num,
+                    duration: 2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: counter,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    onUpdate: function() {
+                        let finalNum = obj.val;
+                        if (match[1].includes('.')) {
+                            finalNum = finalNum.toFixed(1);
+                        } else {
+                            finalNum = Math.floor(finalNum);
+                        }
+                        counter.textContent = finalNum + suffix;
+                    }
+                });
+            });
+
+            // BACKGROUND NET CANVAS
+            const canvas = document.getElementById('bg-net');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let width = canvas.width = window.innerWidth;
+                let height = canvas.height = window.innerHeight;
+
+                window.addEventListener('resize', () => {
+                    width = canvas.width = window.innerWidth;
+                    height = canvas.height = window.innerHeight;
+                });
+
+                const particles = [];
+                for (let i = 0; i < 40; i++) {
+                    particles.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        radius: Math.random() * 2 + 0.5,
+                        vx: (Math.random() - 0.5) * 0.2,
+                        vy: (Math.random() - 0.5) * 0.2,
+                        alpha: Math.random() * 0.4 + 0.1
+                    });
+                }
+
+                function animateNet() {
+                    ctx.clearRect(0, 0, width, height);
+                    particles.forEach(p => {
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        if (p.x < -10) p.x = width + 10;
+                        if (p.x > width + 10) p.x = -10;
+                        if (p.y < -10) p.y = height + 10;
+                        if (p.y > height + 10) p.y = -10;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(59, 84, 65, ${p.alpha})`;
+                        ctx.fill();
+                    });
+                    requestAnimationFrame(animateNet);
+                }
+                animateNet();
+            }
+        });
+    </script>
+</body>
+</html>
+
