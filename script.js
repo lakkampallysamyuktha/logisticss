@@ -246,10 +246,23 @@ if (canvas) {
     animate();
 }
 
-// 7. Clear footer email input on back navigation (bfcache)
+// 7. Clear forms on back navigation (bfcache & history)
 window.addEventListener('pageshow', function(event) {
-    const footerEmailInputs = document.querySelectorAll('.footer-form input[type="email"]');
-    footerEmailInputs.forEach(input => {
-        input.value = '';
-    });
+    let isBack = event.persisted;
+    if (!isBack && window.performance) {
+        if (window.performance.getEntriesByType) {
+            const nav = window.performance.getEntriesByType('navigation')[0];
+            if (nav && nav.type === 'back_forward') isBack = true;
+        } else if (window.performance.navigation && window.performance.navigation.type === 2) {
+            isBack = true;
+        }
+    }
+    if (isBack) {
+        document.querySelectorAll('form').forEach(f => f.reset());
+        document.querySelectorAll('input').forEach(input => {
+            if (input.type !== 'submit' && input.type !== 'button' && !input.hasAttribute('value')) {
+                input.value = '';
+            }
+        });
+    }
 });
