@@ -2841,6 +2841,7 @@ h2 {
         height: 40px;
         margin-bottom: 20px;
         display: block;
+        cursor: pointer;
         content: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
         background-color: var(--bg-color);
         -webkit-mask: url('../images/logo_trimmed.webp') no-repeat center / contain;
