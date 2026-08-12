@@ -2823,8 +2823,10 @@ h2 {
         padding-top: 10px !important;
     }
 
-    body.no-scroll {
+    html:has(body.no-scroll), html:has(body.menu-open),
+    body.no-scroll, body.menu-open {
         overflow: hidden !important;
+        touch-action: none !important;
     }
     .menu-close {
         position: absolute;
