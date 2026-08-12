@@ -560,16 +560,20 @@
                     </div>
                 </div>
 
+                <!-- Remember Me & Forgot Password -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" id="rememberMe" style="width: 16px; height: 16px; margin: 0; cursor: pointer; accent-color: var(--accent-color);">
+                        <label for="rememberMe" style="margin: 0; font-size: 0.9rem; font-weight: 500; cursor: pointer; color: var(--text-color);">Remember me</label>
+                    </div>
+                    <a href="404.html" style="font-size: 0.9rem; font-weight: 600; color: var(--accent-color); text-decoration: none;" onclick="event.preventDefault(); window.location.href='404.html';">Forgot password?</a>
+                </div>
+
                 <!-- Login Button -->
                 <div class="form-group">
                     <button type="submit" class="btn">
                         <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In
                     </button>
-                </div>
-
-                <!-- Links -->
-                <div class="auth-links">
-                    <a href="404.html" onclick="event.preventDefault(); window.location.href='404.html';">Forgot password?</a>
                 </div>
             </form>
 
