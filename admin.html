@@ -1382,7 +1382,7 @@
                         <option value="admin">Admin</option>
                         <option value="user">User</option>
                     </select>
-                    <button class="btn-search" onclick="window.location.href='404.html'"><i class="fa-solid fa-search"></i> Search</button>
+                    <button class="btn-search" onclick="handleSearch(this)"><i class="fa-solid fa-search"></i> Search</button>
                 </div>
             </div>
 
@@ -1606,7 +1606,7 @@
                         <option value="inactive">Inactive</option>
                         <option value="maintenance">Maintenance</option>
                     </select>
-                    <button class="btn-search" onclick="window.location.href='404.html'"><i class="fa-solid fa-search"></i> Search</button>
+                    <button class="btn-search" onclick="handleSearch(this)"><i class="fa-solid fa-search"></i> Search</button>
                 </div>
             </div>
 
@@ -2075,7 +2075,7 @@
                         <option value="failed">Failed</option>
                         <option value="warning">Warning</option>
                     </select>
-                    <button class="btn-search" onclick="window.location.href='404.html'"><i class="fa-solid fa-search"></i> Search</button>
+                    <button class="btn-search" onclick="handleSearch(this)"><i class="fa-solid fa-search"></i> Search</button>
                 </div>
             </div>
 
@@ -2447,6 +2447,45 @@
                 document.body.style.overflow = '';
             }
         });
+
+        // ============================================================
+        // SEARCH VALIDATION
+        // ============================================================
+        function handleSearch(btn) {
+            const container = btn.closest('.search-bar');
+            if (container) {
+                const input = container.querySelector('input[type="text"]');
+                
+                // Remove existing validation message if any
+                let existingMsg = container.parentElement.querySelector('.search-validation-msg');
+                if (existingMsg) {
+                    existingMsg.remove();
+                }
+
+                if (input && input.value.trim() === '') {
+                    const msg = document.createElement('div');
+                    msg.className = 'search-validation-msg';
+                    msg.style.color = '#d1453b';
+                    msg.style.fontSize = '0.85rem';
+                    msg.style.marginTop = '8px';
+                    msg.style.fontWeight = '500';
+                    msg.style.paddingLeft = '14px';
+                    msg.innerText = '* Please enter a search term.';
+                    container.parentElement.appendChild(msg);
+                    
+                    // Highlight input
+                    const originalBorder = input.style.border;
+                    input.style.border = '1px solid #d1453b';
+                    setTimeout(() => {
+                        input.style.border = originalBorder;
+                        if (msg.parentNode) msg.remove();
+                    }, 3000);
+                    
+                    return;
+                }
+            }
+            window.location.href = '404.html';
+        }
 
         // ============================================================
         // LOGOUT

@@ -98,9 +98,9 @@ p.section-subtitle {
     perspective: 1000px;
 }
 .service-ov-item:hover {
-    transform: translateY(-15px);
+    transform: translateY(-15px) scale(1.02);
     box-shadow: 0 30px 60px rgba(59, 84, 65, 0.12);
-    border-color: rgba(249, 160, 63, 0.2);
+    border-color: var(--accent-color, #F9A03F);
 }
 .service-ov-item .icon-wrap {
     display: inline-flex;
@@ -118,7 +118,7 @@ p.section-subtitle {
 .service-ov-item:hover .icon-wrap {
     background: var(--bg-color, #3B5441);
     color: #ffffff;
-    transform: translateZ(20px);
+    transform: translateZ(20px) rotate(-10deg) scale(1.1);
 }
 .service-ov-item h3 {
     font-size: 1.4rem;
