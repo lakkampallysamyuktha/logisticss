@@ -181,7 +181,7 @@
     transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     backdrop-filter: blur(12px);
     position: relative;
-    cursor: pointer;
+    cursor: default;
 }
 .mission-card:nth-child(1) {
     transform: rotate(-6deg) translateY(25px);

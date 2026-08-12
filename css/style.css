@@ -88,6 +88,7 @@ a {
     -webkit-mask: url('../images/logo_trimmed.webp') no-repeat left center / contain;
     mask: url('../images/logo_trimmed.webp') no-repeat left center / contain;
     display: inline-block;
+    cursor: pointer;
 }
 
 .sticky-links a {
