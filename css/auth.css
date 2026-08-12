@@ -635,3 +635,9 @@ form {
         height: 48px;
     }
 }
+
+/* Hide Microsoft Edge native password reveal icon */
+input::-ms-reveal,
+input::-ms-clear {
+    display: none;
+}

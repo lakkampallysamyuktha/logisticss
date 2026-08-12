@@ -672,7 +672,7 @@
             border-color: var(--accent-color);
             box-shadow: 0 0 0 4px rgba(249, 160, 63, 0.08);
         }
-        .form-group .btn-save {
+        .btn-save {
             padding: 9px 28px;
             background: var(--bg-color);
             color: #fff;
@@ -685,7 +685,7 @@
             margin-top: 6px;
             font-size: 0.85rem;
         }
-        .form-group .btn-save:hover {
+        .btn-save:hover {
             background: var(--accent-color);
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(249, 160, 63, 0.25);
@@ -908,6 +908,10 @@
                 padding: 16px 14px 24px;
             }
 
+            #sidebarLogoName {
+                display: none;
+            }
+
             .stats-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 10px;
@@ -1106,8 +1110,9 @@
             <i class="fa-solid fa-xmark"></i>
         </button>
         <!-- Logo -->
-        <a href="index.html" class="sidebar-logo" style="text-decoration: none; cursor: pointer;">
+        <a href="index.html" class="sidebar-logo" style="text-decoration: none; cursor: pointer; flex-direction: column; align-items: flex-start; gap: 4px; padding-bottom: 16px;">
             <div class="logo-icon"></div>
+            <span style="font-size: 1.3rem; font-weight: 700; color: var(--accent-color); text-transform: uppercase; letter-spacing: 2px; margin-left: 2px;">Admin</span>
         </a>
 
         <!-- Navigation -->

@@ -1,11 +1,4 @@
-// Initialize AOS (Animate on Scroll)
-AOS.init({
-    once: true,
-    offset: 50,
-    duration: 800,
-    easing: 'ease-out-cubic',
-});
-
+// AOS removed
 // Hover Spotlight Effect in Hero Section
 const heroSection = document.getElementById('hero');
 const spotlight = document.getElementById('spotlight');
@@ -252,3 +245,11 @@ if (canvas) {
     }
     animate();
 }
+
+// 7. Clear footer email input on back navigation (bfcache)
+window.addEventListener('pageshow', function(event) {
+    const footerEmailInputs = document.querySelectorAll('.footer-form input[type="email"]');
+    footerEmailInputs.forEach(input => {
+        input.value = '';
+    });
+});

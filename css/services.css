@@ -64,7 +64,7 @@
 
 /* Titles */
 h2.section-title {
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     margin-bottom: 1rem;
     text-align: center;
     color: var(--bg-color, #3B5441);
@@ -73,13 +73,17 @@ h2.section-title {
 p.section-subtitle {
     text-align: center;
     font-size: 1.2rem;
-    color: #666;
-    max-width: 750px;
-    margin: 0 auto 4rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto 50px;
     line-height: 1.8;
 }
 
 /* Services Overview - Interactive Tabs */
+.services-overview-section {
+    padding: 100px 24px;
+    background: #f8f9fa; /* slightly off-white to differentiate from hero */
+}
 .services-tabs-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -156,7 +160,7 @@ p.section-subtitle {
 
 .pane-inner {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 40px;
 }
 .pane-icon {
@@ -186,21 +190,63 @@ p.section-subtitle {
     margin: 0;
 }
 
-@media (max-width: 768px) {
-    .s-tabs-nav {
+@media (max-width: 992px) {
+    .pane-inner {
         flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
+}
+
+@media (max-width: 992px) {
     .s-tab-btn {
-        padding: 20px;
-        justify-content: flex-start;
-        border-bottom: 1px solid rgba(0,0,0,0.05);
+        padding: 20px 10px;
+        font-size: 0.95rem;
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .services-tabs-container {
+        background: transparent;
+        box-shadow: none;
+        border: none;
+    }
+    .s-tabs-nav {
+        display: none; /* Hide tab buttons completely on mobile */
+    }
+    .s-tabs-content-area {
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .s-tab-pane {
+        display: block !important; /* Force all panes to show */
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 35px 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        border: 1px solid rgba(0,0,0,0.03);
+        animation: none;
+        opacity: 1 !important;
     }
     .pane-inner {
         flex-direction: column;
         text-align: center;
+        gap: 20px;
+        align-items: center;
     }
-    .s-tabs-content-area {
-        padding: 40px 30px;
+    .pane-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2.2rem;
+        margin: 0 auto;
+    }
+    .pane-text h3 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
     }
 }
 
@@ -365,6 +411,9 @@ p.section-subtitle {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
 }
 .feature-card:nth-child(1) { grid-column: span 2; }
 .feature-card:nth-child(2) { grid-column: span 1; }
@@ -413,5 +462,53 @@ p.section-subtitle {
     .why-choose-section {
         padding: 80px 20px;
     }
+}
+
+/* ==========================================================================
+   Ultra-Small Mobile Optimizations (320px - 480px)
+   ========================================================================== */
+@media (max-width: 480px) {
+    h2.section-title {
+        font-size: 1.8rem !important;
+        margin-bottom: 0.5rem;
+    }
+    p.section-subtitle {
+        font-size: 1rem !important;
+        margin-bottom: 30px;
+    }
+    .services-overview-section {
+        padding: 50px 15px;
+    }
+    .s-tab-pane {
+        padding: 25px 20px;
+    }
+    .pane-inner {
+        gap: 15px;
+    }
+    .pane-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    .pane-text h3 {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+    }
+    .pane-text p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    .why-choose-section {
+        padding: 50px 15px;
+    }
+    .feature-card {
+        padding: 30px 20px;
+    }
+    .feature-card .f-icon {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    .services-process-section {
+        padding: 50px 15px;
     }
 }
