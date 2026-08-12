@@ -71,28 +71,81 @@
             <p class="section-subtitle">
                 A full spectrum of logistics services built for speed, reliability, and global reach.
             </p>
-            <div class="services-overview-grid">
-                <div class="service-ov-item" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="icon-wrap"><i class="fa-solid fa-plane-departure"></i></div>
-                    <h3>Air Freight</h3>
-                    <p>Expedited global shipping with real-time tracking and priority handling.</p>
+            <div class="services-tabs-container" data-aos="fade-up" data-aos-delay="100">
+                <div class="s-tabs-nav">
+                    <button class="s-tab-btn active" onclick="openServiceTab('tab-air')">
+                        <i class="fa-solid fa-plane-departure"></i> Air Freight
+                    </button>
+                    <button class="s-tab-btn" onclick="openServiceTab('tab-ocean')">
+                        <i class="fa-solid fa-ship"></i> Ocean Freight
+                    </button>
+                    <button class="s-tab-btn" onclick="openServiceTab('tab-road')">
+                        <i class="fa-solid fa-truck"></i> Road Freight
+                    </button>
+                    <button class="s-tab-btn" onclick="openServiceTab('tab-warehouse')">
+                        <i class="fa-solid fa-warehouse"></i> Warehousing
+                    </button>
                 </div>
-                <div class="service-ov-item" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="icon-wrap"><i class="fa-solid fa-ship"></i></div>
-                    <h3>Ocean Freight</h3>
-                    <p>Cost-effective maritime transport with full container and LCL options.</p>
-                </div>
-                <div class="service-ov-item" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="icon-wrap"><i class="fa-solid fa-truck"></i></div>
-                    <h3>Road Freight</h3>
-                    <p>Seamless last-mile and cross-border trucking with verified carriers.</p>
-                </div>
-                <div class="service-ov-item" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="icon-wrap"><i class="fa-solid fa-warehouse"></i></div>
-                    <h3>Warehousing</h3>
-                    <p>AI-driven fulfillment centers with climate control and 24/7 security.</p>
+                
+                <div class="s-tabs-content-area">
+                    <div id="tab-air" class="s-tab-pane active">
+                        <div class="pane-inner">
+                            <div class="pane-icon"><i class="fa-solid fa-plane-departure"></i></div>
+                            <div class="pane-text">
+                                <h3>Air Freight</h3>
+                                <p>Expedited global shipping with real-time tracking and priority handling. We ensure your most critical cargo reaches its destination exactly when it needs to.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="tab-ocean" class="s-tab-pane">
+                        <div class="pane-inner">
+                            <div class="pane-icon"><i class="fa-solid fa-ship"></i></div>
+                            <div class="pane-text">
+                                <h3>Ocean Freight</h3>
+                                <p>Cost-effective maritime transport with full container and LCL options. Our strategic port partnerships guarantee reliable sailing schedules worldwide.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-road" class="s-tab-pane">
+                        <div class="pane-inner">
+                            <div class="pane-icon"><i class="fa-solid fa-truck"></i></div>
+                            <div class="pane-text">
+                                <h3>Road Freight</h3>
+                                <p>Seamless last-mile and cross-border trucking with verified carriers. We provide a dense network of ground transport for ultimate flexibility.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-warehouse" class="s-tab-pane">
+                        <div class="pane-inner">
+                            <div class="pane-icon"><i class="fa-solid fa-warehouse"></i></div>
+                            <div class="pane-text">
+                                <h3>Warehousing</h3>
+                                <p>AI-driven fulfillment centers with climate control and 24/7 security. Store your inventory safely and optimize your entire supply chain flow.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <script>
+                function openServiceTab(tabId) {
+                    // Hide all panes
+                    document.querySelectorAll('.s-tab-pane').forEach(pane => {
+                        pane.classList.remove('active');
+                    });
+                    // Remove active from all buttons
+                    document.querySelectorAll('.s-tab-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    // Show target pane
+                    document.getElementById(tabId).classList.add('active');
+                    // Add active to clicked button
+                    event.currentTarget.classList.add('active');
+                }
+            </script>
         </section>
 
         <!-- Section 3: Air Freight Detail -->

@@ -79,70 +79,128 @@ p.section-subtitle {
     line-height: 1.8;
 }
 
-/* Services Overview Grid */
-.services-overview-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-}
-.service-ov-item {
+/* Services Overview - Interactive Tabs */
+.services-tabs-container {
+    max-width: 1000px;
+    margin: 0 auto;
     background: #ffffff;
-    border-radius: 24px;
-    padding: 45px 30px 35px;
-    text-align: center;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    cursor: default;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
-.service-ov-item:hover {
-    transform: translateY(-15px) scale(1.02);
-    box-shadow: 0 30px 60px rgba(59, 84, 65, 0.12);
-    border-color: var(--accent-color, #F9A03F);
-}
-.service-ov-item .icon-wrap {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: rgba(59, 84, 65, 0.05);
-    margin-bottom: 25px;
-    font-size: 2.5rem;
-    color: var(--accent-color, #F9A03F);
-    transition: all 0.4s ease;
-}
-.service-ov-item:hover .icon-wrap {
-    background: var(--bg-color, #3B5441);
-    color: #ffffff;
-    transform: translateZ(20px) rotate(-10deg) scale(1.1);
-}
-.service-ov-item h3 {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-    color: var(--bg-color, #3B5441);
-    transition: transform 0.4s ease;
-}
-.service-ov-item:hover h3 {
-    transform: translateZ(10px);
-}
-.service-ov-item p {
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.7;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0,0,0,0.03);
 }
 
-@media (max-width: 1200px) {
-    .services-overview-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.s-tabs-nav {
+    display: flex;
+    background: rgba(59, 84, 65, 0.03);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
-@media (max-width: 600px) {
-    .services-overview-grid {
-        grid-template-columns: 1fr;
+.s-tab-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 25px 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #5a6b5f;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+}
+.s-tab-btn i {
+    font-size: 1.3rem;
+    color: var(--accent-color, #F9A03F);
+    transition: all 0.3s ease;
+}
+.s-tab-btn:hover {
+    background: rgba(255,255,255,0.5);
+    color: var(--bg-color, #3B5441);
+}
+.s-tab-btn.active {
+    background: #ffffff;
+    color: var(--bg-color, #3B5441);
+}
+.s-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent-color, #F9A03F);
+}
+
+.s-tabs-content-area {
+    padding: 60px 50px;
+    background: #ffffff;
+    min-height: 250px;
+    position: relative;
+}
+.s-tab-pane {
+    display: none;
+    animation: fadeTab 0.5s ease;
+}
+.s-tab-pane.active {
+    display: block;
+}
+@keyframes fadeTab {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.pane-inner {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.pane-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(249, 160, 63, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    color: var(--accent-color, #F9A03F);
+    flex-shrink: 0;
+}
+.pane-text {
+    flex: 1;
+}
+.pane-text h3 {
+    font-size: 2.2rem;
+    color: var(--bg-color, #3B5441);
+    margin-bottom: 15px;
+}
+.pane-text p {
+    font-size: 1.15rem;
+    color: #555;
+    line-height: 1.8;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .s-tabs-nav {
+        flex-direction: column;
+    }
+    .s-tab-btn {
+        padding: 20px;
+        justify-content: flex-start;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .pane-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .s-tabs-content-area {
+        padding: 40px 30px;
     }
 }
 
@@ -288,11 +346,12 @@ p.section-subtitle {
 .why-choose-section .section-subtitle {
     color: rgba(255, 255, 255, 0.85);
 }
+/* Why Choose Us - 6-Item Bento Grid */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    max-width: 1280px;
+    gap: 30px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 .feature-card {
@@ -300,20 +359,31 @@ p.section-subtitle {
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
-    padding: 45px 35px;
-    text-align: center;
+    padding: 40px;
+    text-align: left;
     transition: all 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+.feature-card:nth-child(1) { grid-column: span 2; }
+.feature-card:nth-child(2) { grid-column: span 1; }
+.feature-card:nth-child(3) { grid-column: span 1; }
+.feature-card:nth-child(4) { grid-column: span 2; }
+.feature-card:nth-child(5) { grid-column: span 2; }
+.feature-card:nth-child(6) { grid-column: span 1; }
+
 .feature-card:hover {
     background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-12px);
+    transform: translateY(-8px);
     border-color: rgba(249, 160, 63, 0.4);
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
+
 .feature-card .f-icon {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     color: var(--accent-color, #F9A03F);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     display: inline-block;
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -322,30 +392,26 @@ p.section-subtitle {
 }
 .feature-card h3 {
     font-size: 1.6rem;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     color: #ffffff;
 }
 .feature-card p {
     font-size: 1.05rem;
     opacity: 0.85;
-    line-height: 1.7;
+    line-height: 1.6;
     color: #e0e8e0;
+    margin: 0;
 }
 
-@media (max-width: 992px) {
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
-}
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .features-grid {
         grid-template-columns: 1fr;
+    }
+    .feature-card {
+        grid-column: span 1 !important;
     }
     .why-choose-section {
         padding: 80px 20px;
     }
-    .feature-card {
-        padding: 35px 25px;
     }
 }
