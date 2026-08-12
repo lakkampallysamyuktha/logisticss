@@ -2403,6 +2403,7 @@
         // PAGE SWITCHING
         // ============================================================
         function switchPage(pageId) {
+            sessionStorage.setItem('activeAdminPage', pageId);
             document.querySelectorAll('.content-page').forEach(el => {
                 el.classList.remove('active');
             });
@@ -2787,6 +2788,31 @@
             el.setAttribute('onclick', "window.location.href='404.html'");
             el.style.cursor = 'pointer';
         });
+
+        // Force refresh when navigating back from another page (e.g., 404.html)
+        window.addEventListener('pageshow', function (event) {
+            let isBack = event.persisted;
+            if (!isBack && window.performance) {
+                if (window.performance.getEntriesByType) {
+                    const nav = window.performance.getEntriesByType('navigation')[0];
+                    if (nav && nav.type === 'back_forward') isBack = true;
+                } else if (window.performance.navigation && window.performance.navigation.type === 2) {
+                    isBack = true;
+                }
+            }
+            if (isBack) {
+                document.querySelectorAll('input').forEach(i => {
+                    if (!i.hasAttribute('value')) i.value = '';
+                });
+                window.location.reload();
+            }
+        });
+
+        // Restore active page on load
+        const savedPage = sessionStorage.getItem('activeAdminPage');
+        if (savedPage) {
+            switchPage(savedPage);
+        }
     </script>
 
 </body>
