@@ -2834,6 +2834,16 @@ h2 {
         color: var(--bg-color);
         cursor: pointer;
     }
+    .mobile-nav-logo {
+        width: 140px;
+        height: 40px;
+        margin-bottom: 20px;
+        display: block;
+        content: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+        background-color: var(--bg-color);
+        -webkit-mask: url('../images/logo_trimmed.webp') no-repeat center / contain;
+        mask: url('../images/logo_trimmed.webp') no-repeat center / contain;
+    }
 }
 
 /* ============================================================
@@ -2886,12 +2896,13 @@ h2 {
    ============================================================ */
 @media (min-width: 769px) {
     /* Hide mobile-specific menu items on desktop */
-    .menu-close, .mobile-auth-links {
+    .menu-close, .mobile-auth-links, .mobile-nav-logo {
         display: none !important;
     }
 }
-
 @media (max-width: 768px) {
+    /* Show the logo and close button inside the full-page dropdown */
+    
     /* Make the mobile menu background fully opaque mint to prevent overlap visibility */
     .sticky-links, .header-section .nav-links {
         background: #E4F5DF !important; /* Solid mint */

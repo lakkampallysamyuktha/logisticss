@@ -36,6 +36,7 @@
 
             <nav class="nav-links sticky-links">
                 <div class="menu-close"><i class="fa-solid fa-xmark"></i></div>
+                <img src="images/logo_trimmed.webp" alt="Stackly Logistics Logo" class="mobile-nav-logo">
                 <a href="index.html">HOME</a>
                 <a href="services.html">SERVICES</a>
                 <a href="about.html">ABOUT</a>
@@ -602,7 +603,7 @@
 
         if (hamburger && navLinks) {
             hamburger.addEventListener('click', () => {
-                const isOpen = navLinks.classList.toggle('open');
+                const isOpen = navLinks.classList.toggle('active');
                 body.classList.toggle('menu-open');
                 const icon = hamburger.querySelector('i');
                 if (isOpen) {
@@ -614,7 +615,7 @@
 
             if (menuClose) {
                 menuClose.addEventListener('click', () => {
-                    navLinks.classList.remove('open');
+                    navLinks.classList.remove('active');
                     body.classList.remove('menu-open');
                     const icon = hamburger.querySelector('i');
                     icon.className = 'fa-solid fa-bars';
@@ -623,7 +624,7 @@
 
             navLinks.querySelectorAll('a:not(.mobile-auth-links a)').forEach(link => {
                 link.addEventListener('click', () => {
-                    navLinks.classList.remove('open');
+                    navLinks.classList.remove('active');
                     body.classList.remove('menu-open');
                     const icon = hamburger.querySelector('i');
                     icon.className = 'fa-solid fa-bars';
@@ -631,8 +632,8 @@
             });
 
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
-                    navLinks.classList.remove('open');
+                if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
                     body.classList.remove('menu-open');
                     const icon = hamburger.querySelector('i');
                     icon.className = 'fa-solid fa-bars';
@@ -641,7 +642,7 @@
 
             navLinks.addEventListener('click', (e) => {
                 if (e.target === navLinks) {
-                    navLinks.classList.remove('open');
+                    navLinks.classList.remove('active');
                     body.classList.remove('menu-open');
                     const icon = hamburger.querySelector('i');
                     icon.className = 'fa-solid fa-bars';
